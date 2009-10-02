@@ -4,3 +4,6 @@ ln -s ~/repository/git/ubiquitous/vimrc    ~/.vimrc
 ln -s ~/repository/git/ubiquitous/bashrc   ~/.bashrc
 ln -s ~/repository/git/ubiquitous/bashrc   ~/.bash_profile
 ln -s ~/repository/git/ubiquitous/inputrc  ~/.inputrc
+
+source ~/.bashrc
+source ~/.inputrc
