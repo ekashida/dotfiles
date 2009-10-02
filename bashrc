@@ -20,8 +20,8 @@ alias mv='mv -i'
 alias w='w|sort'
 alias ls='ls -G'
 
-alias cdgit='~/repository/git/'
-alias cdsvn='~/repository/svn/'
+alias cdgit='cd ~/repository/git/'
+alias cdsvn='cd ~/repository/svn/'
 
 alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'
 
@@ -38,6 +38,6 @@ if [[ $USER = keugene ]]; then
     alias dev-stp-001='ssh dev-stp-001.ysm.corp.sp1.yahoo.com'
     alias isrv4-vm2='ssh isrv4-vm2.eglbp.corp.yahoo.com'
 
-    alias cdhtdocs='/home/y/share/htdocs/'
+    alias cdhtdocs='cd /home/y/share/htdocs/'
     alias which_yroot_yapache='sudo lsof | grep yapache | grep cwd'
 fi
