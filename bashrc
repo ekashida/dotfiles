@@ -19,6 +19,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias w='w|sort'
 [[ $TERM = 'xterm-color' ]] && alias ls='ls --color'
+[[ $TERM_PROGRAM ]] && alias ls='ls -G' # overrides previous line for macs
 
 alias cdgit='cd ~/repository/git/'
 alias cdsvn='cd ~/repository/svn/'
