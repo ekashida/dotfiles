@@ -28,6 +28,12 @@ nmap ,,v :e ~/.vimrc<CR>
 nmap ,2 :set shiftwidth=2<CR>
 nmap ,4 :set shiftwidth=4<CR>
 
+" Remove trailng spaces.
+nmap ,s :%s/\s\+$//g<CR>
+
+" Convert tabs into spaces.
+nmap ,t :%retab!<CR>
+
 " The trailing space is required.
 iab ahtml 
 \<CR><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
