@@ -4,7 +4,7 @@ set encoding=utf-8
 
 set ruler                       " Displays column and row number.
 set nowrap                      " Prevents lines from wrapping.
-set paste                       " Pastes using intended indentation.
+"set paste                       " Pastes using intended indentation.
 
 set smarttab                    " Treats tab and backspace as shiftwidth columns when indenting/dedenting.
 set shiftround                  " Indents to a multiple of shiftwidth.
