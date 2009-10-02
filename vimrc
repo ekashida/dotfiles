@@ -29,3 +29,18 @@ nmap ,v :e ~/.vimrc<Return>
 
 nmap ,2 :set shiftwidth=2<Return>
 nmap ,4 :set shiftwidth=4<Return>
+
+" The trailing space is required.
+iab ahtml 
+\<CR><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+\<CR><html lang="en-US">
+\<CR><head>
+\<CR><title></title>
+\<CR></head>
+\<CR>
+\<CR><body>
+\<CR></body>
+\<CR></html>
+
+iab alink <link rel="stylesheet" type="text/css" href="" />
+iab ascript <script type="text/javascript" src=""></script>
