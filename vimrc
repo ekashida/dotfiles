@@ -24,6 +24,7 @@ set listchars=tab:>-,trail:$    " Defines how to display whitespace characters.
 
 nmap ,,s :source ~/.vimrc<CR>
 nmap ,,v :e ~/.vimrc<CR>
+nmap ,,n :NERDTree<CR>
 
 nmap ,2 :set shiftwidth=2<CR>
 nmap ,4 :set shiftwidth=4<CR>
