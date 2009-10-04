@@ -22,22 +22,25 @@ alias ls='ls --color'
 
 alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'
 
-# y! specific settings
+### begin y! specific settings ###
 [[ $YROOT_NAME ]] && export PS1="\[${blue}\]\t \[${green}\]${YROOT_NAME}\[${white}\]:\[${blue}\]\W \[${white}\]\$ "
 
 if [[ $USER = keugene ]]; then
     export PATH=/home/y/bin:${PATH}
     export CVSROOT=:ext:${USER}@vault.yahoo.com:/CVSROOT
+    export SVNROOT=svn+ssh://svn.corp.yahoo.com/
 
     alias clothnerve='ssh clothnerve.corp.yahoo.com'
     alias clothnerve-vm0='ssh clothnerve-vm0.corp.yahoo.com'
     alias clothnerve-vm1='ssh clothnerve-vm1.corp.yahoo.com'
     alias clothnerve-vm2='ssh clothnerve-vm2.corp.yahoo.com'
+    alias plague='ssh clothnerve.corp.yahoo.com -p 5522'
     alias dev-stp-001='ssh dev-stp-001.ysm.corp.sp1.yahoo.com'
     alias isrv4-vm2='ssh isrv4-vm2.eglbp.corp.yahoo.com'
 
     alias cdhtdocs='cd /home/y/share/htdocs/'
     alias which_yroot_yapache='sudo lsof | grep yapache | grep cwd'
 fi
+### end y! specific settings ###
 
 source ~/.local_settings # local settings
