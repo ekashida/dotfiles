@@ -43,4 +43,4 @@ if [[ $USER = keugene ]]; then
 fi
 ### end y! specific settings ###
 
-source ~/.local_settings # local settings
+[[ -e ~/.local_settings ]] && source ~/.local_settings # local settings
