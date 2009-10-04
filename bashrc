@@ -18,8 +18,7 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias w='w|sort'
-[[ $TERM = 'xterm-color' ]] && alias ls='ls --color'
-[[ $TERM_PROGRAM ]] && alias ls='ls -G' # overrides previous line for macs
+alias ls='ls --color'
 
 alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'
 
@@ -40,3 +39,5 @@ if [[ $USER = keugene ]]; then
     alias cdhtdocs='cd /home/y/share/htdocs/'
     alias which_yroot_yapache='sudo lsof | grep yapache | grep cwd'
 fi
+
+source ~/.local_settings # local settings
