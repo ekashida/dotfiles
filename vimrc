@@ -20,6 +20,7 @@ set hlsearch                    " Highlights the match.
 
 set list                        " Displays whitespace characters.
 set listchars=tab:>-,trail:$    " Defines how to display whitespace characters.
+set wildmode=list:longest       " Autocompletion for filenames; complete till longest common substring.
 "set virtualedit=all             " Allows traversal of non-existant areas.
 
 nmap ,,s :source ~/.vimrc<CR>
@@ -34,6 +35,10 @@ nmap ,s :%s/\s\+$//g<CR>
 
 " Convert tabs into spaces.
 nmap ,t :%retab!<CR>
+
+" Navigate buffers using up/down arrows.
+nmap <UP>   :tabp<CR>
+nmap <DOWN> :tabn<CR>
 
 " The trailing space is required.
 iab ahtml 

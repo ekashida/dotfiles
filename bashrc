@@ -11,6 +11,10 @@ export EDITOR=vim
 # vim bindings in bash
 set -o vi
 
+# n: no swap file used
+# p: gives each file its own tab
+alias vim='vim -np'
+
 # & supresses duplicate entries
 export HISTIGNORE="&:ls:[bf]g:history:exit"
 
