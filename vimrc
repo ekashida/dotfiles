@@ -40,16 +40,16 @@ nmap ,t :%retab!<CR>
 nmap <UP>   :tabp<CR>
 nmap <DOWN> :tabn<CR>
 
-" The trailing space is required.
-iab ahtml 
-\<CR><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+iab ahtml <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 \<CR><html lang="en-US">
+\<CR>
 \<CR><head>
 \<CR><title></title>
 \<CR></head>
 \<CR>
 \<CR><body>
 \<CR></body>
+\<CR>
 \<CR></html>
 
 iab alink <link rel="stylesheet" type="text/css" href="" />
