@@ -21,6 +21,7 @@ set hlsearch                    " Highlights the match.
 set list                        " Displays whitespace characters.
 set listchars=tab:>-,trail:$    " Defines how to display whitespace characters.
 set wildmode=list:longest       " Autocompletion for filenames; complete till longest common substring.
+set background=dark             " Syntax coloring scheme for dark backgrounds.
 "set virtualedit=all             " Allows traversal of non-existant areas.
 
 nmap ,,s :source ~/.vimrc<CR>
