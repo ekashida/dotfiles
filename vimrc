@@ -55,3 +55,13 @@ iab ahtml <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/T
 
 iab alink <link rel="stylesheet" type="text/css" href="" />
 iab ascript <script type="text/javascript" src=""></script>
+
+iab aclearfix .clearfix:after {
+\<CR>    clear:both;
+\<CR>    content:'';
+\<CR>    display:block;
+\<CR>}
+\<CR>
+\<CR>.clearfix {
+\<CR>    zoom:1;
+\<CR>}
