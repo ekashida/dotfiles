@@ -32,6 +32,7 @@ alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'
 if [[ $USER = keugene ]]; then
     export PATH=/home/y/bin:${PATH}
     export CVSROOT=:ext:${USER}@vault.yahoo.com:/CVSROOT
+    export CVS_RSH=yssh
     export SVNROOT=svn+ssh://svn.corp.yahoo.com/
 
     alias clothnerve='ssh clothnerve.corp.yahoo.com'
