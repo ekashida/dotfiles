@@ -42,6 +42,7 @@ if [[ $USER = keugene ]]; then
     alias plague='ssh clothnerve.corp.yahoo.com -p 5522'
     alias dev-stp-001='ssh dev-stp-001.ysm.corp.sp1.yahoo.com'
     alias isrv4-vm2='ssh isrv4-vm2.eglbp.corp.yahoo.com'
+    alias esb-frontend2='ssh esb-frontend2.ep.staging.re1.yahoo.com'
 
     alias cdhtdocs='cd /home/y/share/htdocs/'
     alias yapache_error_logs='tail -f /home/y/logs/yapache/error'
