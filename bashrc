@@ -44,6 +44,7 @@ if [[ $USER = keugene ]]; then
     alias isrv4-vm2='ssh isrv4-vm2.eglbp.corp.yahoo.com'
 
     alias cdhtdocs='cd /home/y/share/htdocs/'
+    alias yapache_error_logs='tail -f /home/y/logs/yapache/error'
     alias which_yroot_yapache='sudo lsof | grep yapache | grep cwd'
 fi
 ### end y! specific settings ###
