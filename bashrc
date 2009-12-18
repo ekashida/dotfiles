@@ -24,6 +24,7 @@ alias mv='mv -i'
 alias w='w|sort'
 alias ls='ls --color'
 
+alias resource='source ~/.bashrc'
 alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'
 
 ### begin y! specific settings ###
@@ -39,10 +40,10 @@ if [[ $USER = keugene ]]; then
     alias clothnerve-vm0='ssh clothnerve-vm0.corp.yahoo.com'
     alias clothnerve-vm1='ssh clothnerve-vm1.corp.yahoo.com'
     alias clothnerve-vm2='ssh clothnerve-vm2.corp.yahoo.com'
-    alias plague='ssh clothnerve.corp.yahoo.com -p 5522'
     alias dev-stp-001='ssh dev-stp-001.ysm.corp.sp1.yahoo.com'
     alias isrv4-vm2='ssh isrv4-vm2.eglbp.corp.yahoo.com'
     alias esb-frontend2='ssh esb-frontend2.ep.staging.re1.yahoo.com'
+    alias eah1-qa-nacs='ssh eah1.qa.nacs.yahoo.com'
 
     alias cdhtdocs='cd /home/y/share/htdocs/'
     alias yapache_error_logs='tail -f /home/y/logs/yapache/error'
