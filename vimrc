@@ -65,3 +65,5 @@ iab aclearfix .clearfix:after {
 \<CR>.clearfix {
 \<CR>    zoom:1;
 \<CR>}
+
+iab acssfoundation <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css">
