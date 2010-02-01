@@ -68,3 +68,5 @@ iab aclearfix .clearfix:after {
 
 iab acssfoundation <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css">
 iab ayui3seed <script type="text/javascript" src="http://yui.yahooapis.com/3.0.0/build/yui/yui-min.js"></script>
+iab acdnstg http://explore-stage.lmg.sp1.yahoo.com/<site>/uploads/
+iab acdnprd http://l.yimg.com/cy/<site>/uploads/
