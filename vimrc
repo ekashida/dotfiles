@@ -45,6 +45,7 @@ iab ahtml <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/T
 \<CR><html lang="en-US">
 \<CR>
 \<CR><head>
+\<CR><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 \<CR><title></title>
 \<CR><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css">
 \<CR><script type="text/javascript" src="http://yui.yahooapis.com/3.1.0/build/yui/yui-min.js"></script>
