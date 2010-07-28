@@ -46,7 +46,7 @@ set -o vi
 
 ### Y! SPECIFIC SETTINGS ###
 
-if [[ -e /home/y/ ]]; then
+if [ -e /home/y/ ] || [ "$(hostname)" == 'scenegate-lm' ]; then
     export PATH=/home/y/bin:${PATH}
     export SVNROOT=svn+ssh://svn.corp.yahoo.com/
 
@@ -58,4 +58,9 @@ if [[ -e /home/y/ ]]; then
     alias cdhtdocs='cd /home/y/share/htdocs/'
     alias errorlog='tail -f /home/y/logs/yapache/error'
     alias which_yroot_yapache='sudo lsof | grep yapache | grep cwd'
+
+    function devel () {
+        host=$(echo "$1" | sed 's/\([0-9]\)\([0-9]\{2\}\)/devel\1-\2.dev.nacs.corp.sp2.yahoo.com/')
+        ssh $host
+    }
 fi
