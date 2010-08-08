@@ -41,6 +41,10 @@ nmap ,t :%retab!<CR>
 nmap <UP>   :tabp<CR>
 nmap <DOWN> :tabn<CR>
 
+" Remove underlines from anchor tag link text
+hi def linkBlue ctermfg=DarkBlue
+hi def link htmlLink linkBlue
+
 iab ahtml <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 \<CR><html lang="en-US">
 \<CR>
