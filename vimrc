@@ -29,6 +29,9 @@ nmap ,,v :e ~/.vimrc<CR>
 nmap ,,n :NERDTree<CR>
 nmap ,,m :MRU<CR>
 
+" Quit both the file and the NERDTree window.
+nmap ,,q <C-w>hq:q<CR>
+
 nmap ,2 :set shiftwidth=2<CR>
 nmap ,4 :set shiftwidth=4<CR>
 
@@ -42,7 +45,7 @@ nmap ,t :%retab!<CR>
 nmap <UP>   :tabp<CR>
 nmap <DOWN> :tabn<CR>
 
-" Remove underlines from anchor tag link text
+" Remove underlines from anchor tag link text.
 hi def linkBlue ctermfg=DarkBlue
 hi def link htmlLink linkBlue
 
