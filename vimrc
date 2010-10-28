@@ -4,7 +4,7 @@ set encoding=utf-8
 
 set ruler                       " Displays column and row number.
 set nowrap                      " Prevents lines from wrapping.
-"set paste                       " Pastes using intended indentation.
+set paste                       " Pastes using intended indentation.
 
 set smarttab                    " Treats tab and backspace as shiftwidth columns when indenting/dedenting.
 set shiftround                  " Indents to a multiple of shiftwidth.
@@ -78,6 +78,4 @@ iab aclearfix .clearfix:after {
 \<CR>}
 
 iab acss <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css">
-iab ayui <script type="text/javascript" src="http://yui.yahooapis.com/3.1.2/build/yui/yui-min.js"></script>
-iab acdnstg http://explore-stage.lmg.sp1.yahoo.com/<site>/uploads/
-iab acdnprd http://l.yimg.com/cy/<site>/uploads/
+iab ayui <script type="text/javascript" src="http://yui.yahooapis.com/3.2.0/build/yui/yui-min.js"></script>

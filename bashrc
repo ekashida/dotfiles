@@ -31,7 +31,7 @@ alias ls='ls --color'
 
 # edit/source these config files in one command
 alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'
-alias $LOCALRC='$EDITOR ~/.$LOCALRC; source ~/.bashrc'   # file for local configs
+alias $LOCALRC='$EDITOR ~/.$LOCALRC; source ~/.$LOCALRC'   # local configs
 
 
 
@@ -63,5 +63,9 @@ if [ -e /home/y/ ] || [ "$(hostname)" == 'scenegate-lm' ]; then
     function devel () {
         host=$(echo "$1" | sed 's/\([0-9]\)\([0-9]\{2\}\)/devel\1-\2.dev.nacs.corp.sp2.yahoo.com/')
         ssh $host
+    }
+
+    function create_link_package {
+        yinst create -t link $1 -i --clean && rm -rf *tgz
     }
 fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ln -s ~/repository/ubiquitous/vimrc    ~/.vimrc
-ln -s ~/repository/ubiquitous/bashrc   ~/.bashrc
-ln -s ~/repository/ubiquitous/bashrc   ~/.bash_profile
-ln -s ~/repository/ubiquitous/inputrc  ~/.inputrc
+ln -s ~/repository/git/ubiquitous/vimrc    ~/.vimrc
+ln -s ~/repository/git/ubiquitous/bashrc   ~/.bashrc
+ln -s ~/repository/git/ubiquitous/bashrc   ~/.bash_profile
+ln -s ~/repository/git/ubiquitous/inputrc  ~/.inputrc
