@@ -48,7 +48,7 @@ set -o vi
 ### Y! SPECIFIC SETTINGS ###
 
 if [ -e /home/y/ ] || [ "$(hostname)" == 'scenegate-lm' ]; then
-    export PATH=/home/y/bin:${PATH}
+    export PATH=/home/y/bin:/usr/local/bin:${PATH}
     export SVNROOT=svn+ssh://svn.corp.yahoo.com/
 
     alias clothnerve='ssh clothnerve.corp.yahoo.com'
