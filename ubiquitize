@@ -1,6 +1,8 @@
 #!/bin/bash
 
-ln -s ~/repository/git/ubiquitous/vimrc    ~/.vimrc
-ln -s ~/repository/git/ubiquitous/bashrc   ~/.bashrc
-ln -s ~/repository/git/ubiquitous/bashrc   ~/.bash_profile
-ln -s ~/repository/git/ubiquitous/inputrc  ~/.inputrc
+ln -sf ~/repository/git/ubiquitous/vimrc    ~/.vimrc
+ln -sf ~/repository/git/ubiquitous/bashrc   ~/.bashrc
+ln -sf ~/repository/git/ubiquitous/bashrc   ~/.bash_profile
+ln -sf ~/repository/git/ubiquitous/inputrc  ~/.inputrc
+
+[[ -e /usr/local/bin/ ]] && ln -sf ~/repository/git/ubiquitous/filesync /usr/local/bin/

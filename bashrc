@@ -27,7 +27,7 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias w='w|sort'
-alias ls='ls --color'
+alias ls='ls -G'
 
 # edit/source these config files in one command
 alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'
