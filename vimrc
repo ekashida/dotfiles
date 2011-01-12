@@ -53,29 +53,16 @@ iab ahtml <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/T
 \<CR><html lang="en-US">
 \<CR>
 \<CR><head>
-\<CR><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-\<CR><title></title>
-\<CR><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css">
+\<CR>    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+\<CR>    <title></title>
+\<CR>    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.2.0/build/cssreset/reset-min.css&3.2.0/build/cssfonts/fonts-min.css&3.2.0/build/cssgrids/grids-min.css">
 \<CR></head>
 \<CR>
 \<CR><body>
-\<CR><script type="text/javascript" src="http://yui.yahooapis.com/3.1.2/build/yui/yui-min.js"></script>
+\<CR>    <script type="text/javascript" src="http://yui.yahooapis.com/3.2.0/build/yui/yui-min.js"></script>
 \<CR></body>
 \<CR>
 \<CR></html>
 
-iab alink <link rel="stylesheet" type="text/css" href="" />
-iab ascript <script type="text/javascript" src=""></script>
-
-iab aclearfix .clearfix:after {
-\<CR>    clear:both;
-\<CR>    content:'';
-\<CR>    display:block;
-\<CR>}
-\<CR>
-\<CR>.clearfix {
-\<CR>    zoom:1;
-\<CR>}
-
-iab acss <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css">
+iab acss <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.2.0/build/cssreset/reset-min.css&3.2.0/build/cssfonts/fonts-min.css&3.2.0/build/cssgrids/grids-min.css">
 iab ayui <script type="text/javascript" src="http://yui.yahooapis.com/3.2.0/build/yui/yui-min.js"></script>
