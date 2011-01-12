@@ -14,6 +14,7 @@ export PS1="\[${BLUE}\]\t \[${GREEN}\]\h\[${WHITE}\]:\[${BLUE}\]\W \[${WHITE}\]\
 export HISTIGNORE="&:ls:[bf]g:history:exit" # & supresses duplicate entries
 export HISTSIZE=1000
 export EDITOR=vim
+export NODE_PATH=/usr/local/lib/node
 
 
 
