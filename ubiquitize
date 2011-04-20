@@ -5,4 +5,4 @@ ln -sf ~/repository/git/ubiquitous/bashrc   ~/.bashrc
 ln -sf ~/repository/git/ubiquitous/bashrc   ~/.bash_profile
 ln -sf ~/repository/git/ubiquitous/inputrc  ~/.inputrc
 
-[[ -e /usr/local/bin/ ]] && ln -sf ~/repository/git/ubiquitous/filesync /usr/local/bin/
+source ~/.bashrc

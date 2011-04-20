@@ -24,6 +24,7 @@ set wildmode=list:longest       " Autocompletion for filenames; complete till lo
 set background=dark             " Syntax coloring scheme for dark backgrounds.
 "set virtualedit=all             " Allows traversal of non-existant areas.
 
+nmap ,,p :set paste!<CR>
 nmap ,,s :source ~/.vimrc<CR>
 nmap ,,v :e ~/.vimrc<CR>
 nmap ,,n :NERDTree<CR>
