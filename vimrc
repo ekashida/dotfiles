@@ -1,10 +1,14 @@
 syntax enable
 
+filetype on
+filetype plugin on
+filetype indent on
+
 set encoding=utf-8
 
 set ruler                       " Displays column and row number.
 set nowrap                      " Prevents lines from wrapping.
-set paste                       " Pastes using intended indentation.
+"set paste                       " Pastes using intended indentation.
 
 set smarttab                    " Treats tab and backspace as shiftwidth columns when indenting/dedenting.
 set shiftround                  " Indents to a multiple of shiftwidth.
@@ -49,21 +53,3 @@ nmap <DOWN> :tabn<CR>
 " Remove underlines from anchor tag link text.
 hi def linkBlue ctermfg=DarkBlue
 hi def link htmlLink linkBlue
-
-iab ahtml <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-\<CR><html lang="en-US">
-\<CR>
-\<CR><head>
-\<CR>    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-\<CR>    <title></title>
-\<CR>    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.3.0/build/cssreset/reset-min.css&3.3.0/build/cssfonts/fonts-min.css&3.3.0/build/cssgrids/grids-min.css">
-\<CR></head>
-\<CR>
-\<CR><body>
-\<CR>    <script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
-\<CR></body>
-\<CR>
-\<CR></html>
-
-iab acss <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.3.0/build/cssreset/reset-min.css&3.3.0/build/cssfonts/fonts-min.css&3.3.0/build/cssgrids/grids-min.css">
-iab ayui <script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script>
