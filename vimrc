@@ -2,7 +2,7 @@ syntax enable
 
 filetype on
 filetype plugin on
-filetype indent on
+"filetype indent on
 
 set encoding=utf-8
 

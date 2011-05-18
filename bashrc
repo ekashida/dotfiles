@@ -57,14 +57,8 @@ if [ -e /home/y/ ] || [ "$(hostname)" == 'scenegate-lm' ]; then
     alias clothnerve-vm1='ssh clothnerve-vm1.corp.yahoo.com'
     alias clothnerve-vm2='ssh clothnerve-vm2.corp.yahoo.com'
 
-    alias cdhtdocs='cd /home/y/share/htdocs/'
-    alias errorlog='tail -f /home/y/logs/yapache/error'
-
-    # devel 202 => ssh devel2-02.dev.nacs.corp.sp2
-    function devel () {
-        host=$(echo "$1" | sed 's/\([0-9]\)\([0-9]\{2\}\)/devel\1-\2.dev.nacs.corp.sp2.yahoo.com/')
-        ssh $host
-    }
+    [ -e /home/y/ ] && alias cdhtdocs='cd /home/y/share/htdocs/'
+    [ -e /home/y/ ] && alias errorlog='tail -f /home/y/logs/yapache/error'
 
     function create_link_package {
         yinst create -t link $1 -i --clean && rm -rf *tgz
