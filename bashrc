@@ -20,15 +20,12 @@ export PATH=~/local/bin:$PATH
 
 ### ALIASES ###
 
-# n: no swap file used
-# p: gives each file its own tab
-alias vim='vim -np'
-
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias w='w|sort'
 alias ls='ls -G'
+alias ll='ls -l'
 
 # edit/source these config files in one command
 alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'

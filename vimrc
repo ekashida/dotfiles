@@ -1,41 +1,41 @@
 syntax enable
 
-filetype on
-filetype plugin on
-"filetype indent on
-
 set encoding=utf-8
+set directory=/tmp              " Put swp files in /tmp.
 
-set ruler                       " Displays column and row number.
-set nowrap                      " Prevents lines from wrapping.
-"set paste                       " Pastes using intended indentation.
+set ruler                       " Display column and row number.
+set nowrap                      " Prevent lines from wrapping.
+"set paste                       " Paste using intended indentation.
 
-set smarttab                    " Treats tab and backspace as shiftwidth columns when indenting/dedenting.
-set shiftround                  " Indents to a multiple of shiftwidth.
-set shiftwidth=4                " Defines the number of columns in an indent.
+set smarttab                    " Treat tab and backspace as shiftwidth columns when indenting/dedenting.
+set shiftround                  " Indent to a multiple of shiftwidth.
+set shiftwidth=4                " Define the number of columns in an indent.
 
-set expandtab                   " Expands inserted tabs into tabstop columns.
-set tabstop=4                   " Defines the number of columns in a tab character.
+set expandtab                   " Expand inserted tabs into tabstop columns.
+set tabstop=4                   " Define the number of columns in a tab character.
 
-set ignorecase                  " Ignores case in search patterns.
-set smartcase                   " Overrides ignorecase option when pattern contains upper-case letters.
-set incsearch                   " Jumps to the first occurance of a match in real time.
-set hlsearch                    " Highlights the match.
+set ignorecase                  " Ignore case in search patterns.
+set smartcase                   " Override ignorecase option when pattern contains upper-case letters.
+set incsearch                   " Jump to the first occurance of a match in real time.
+set hlsearch                    " Highlight the match.
 
-set list                        " Displays whitespace characters.
-set listchars=tab:>-,trail:$    " Defines how to display whitespace characters.
+set list                        " Display whitespace characters.
+set listchars=tab:>-,trail:$    " Define how to display whitespace characters.
 set wildmode=list:longest       " Autocompletion for filenames; complete till longest common substring.
 set background=dark             " Syntax coloring scheme for dark backgrounds.
-"set virtualedit=all             " Allows traversal of non-existant areas.
+"set virtualedit=all             " Allow traversal of non-existant areas.
 
+" Toggle paste.
 nmap ,,p :set paste!<CR>
+
+" Source the .vimrc (only useful from within .vimrc).
 nmap ,,s :source ~/.vimrc<CR>
-nmap ,,v :e ~/.vimrc<CR>
+
 nmap ,,n :NERDTree<CR>
 nmap ,,m :MRU<CR>
 
-" Quit both the file and the NERDTree window.
-nmap ,,q <C-w>hq:q<CR>
+" Quit all windows.
+nmap ,,q :q<CR>:q<CR>:q<CR>:q<CR>
 
 nmap ,2 :set shiftwidth=2<CR>
 nmap ,4 :set shiftwidth=4<CR>
@@ -46,10 +46,10 @@ nmap ,s :%s/\s\+$//g<CR>
 " Convert tabs into spaces.
 nmap ,t :%retab!<CR>
 
-" Navigate buffers using up/down arrows.
-nmap <UP>   :tabp<CR>
-nmap <DOWN> :tabn<CR>
-
 " Remove underlines from anchor tag link text.
 hi def linkBlue ctermfg=DarkBlue
 hi def link htmlLink linkBlue
+
+" Required settings for snipMate.
+filetype on
+filetype plugin on
