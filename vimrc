@@ -5,6 +5,7 @@ set directory=/tmp              " Put swp files in /tmp.
 
 set ruler                       " Display column and row number.
 set nowrap                      " Prevent lines from wrapping.
+set scrolloff=5                 " Lookahead while scrolling.
 "set paste                       " Paste using intended indentation.
 
 set smarttab                    " Treat tab and backspace as shiftwidth columns when indenting/dedenting.
@@ -25,8 +26,15 @@ set wildmode=list:longest       " Autocompletion for filenames; complete till lo
 set background=dark             " Syntax coloring scheme for dark backgrounds.
 "set virtualedit=all             " Allow traversal of non-existant areas.
 
+" Navigate the displayed lines for wrapped lines
+nmap j gj
+nmap k gk
+
 " Toggle paste.
 nmap ,,p :set paste!<CR>
+
+"Toggle wrapping.
+nmap ,,w :set wrap!<CR>
 
 " Source the .vimrc (only useful from within .vimrc).
 nmap ,,s :source ~/.vimrc<CR>
