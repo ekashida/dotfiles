@@ -49,12 +49,12 @@ if [ $USER == 'keugene' ]; then
     export PATH=/home/y/bin:/usr/local/bin:${PATH}
     export SVNROOT=svn+ssh://svn.corp.yahoo.com/
 
-    [[ $YROOT_NAME ]] && export PS1="\[${blue}\]\t \[${green}\]${YROOT_NAME}@\h\[${white}\]:\[${blue}\]\W \[${white}\]\$ "
+    [[ $YROOT_NAME ]] && export PS1="\[${blue}\]\t \[${green}\]${YROOT_NAME}-yroot\[${white}\]:\[${blue}\]\W \[${white}\]\$ "
 
     alias clothnerve='ssh clothnerve.corp.yahoo.com'
-    alias clothnerve-vm0='ssh clothnerve-vm0.corp.yahoo.com'
-    alias clothnerve-vm1='ssh clothnerve-vm1.corp.yahoo.com'
-    alias clothnerve-vm2='ssh clothnerve-vm2.corp.yahoo.com'
+    alias clothnerve0='ssh clothnerve-vm0.corp.yahoo.com'
+    alias clothnerve1='ssh clothnerve-vm1.corp.yahoo.com'
+    alias clothnerve2='ssh clothnerve-vm2.corp.yahoo.com'
 
     [ -e /home/y/ ] && alias cdhtdocs='cd /home/y/share/htdocs/'
     [ -e /home/y/ ] && alias errorlog='tail -f /home/y/logs/yapache/error'
