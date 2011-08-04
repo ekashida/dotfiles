@@ -45,9 +45,11 @@ set -o vi
 
 ### Y! SPECIFIC SETTINGS ###
 
-if [ -e /home/y/ ] || [ "$(hostname)" == 'scenegate-lm' ]; then
+if [ $USER == 'keugene' ]; then
     export PATH=/home/y/bin:/usr/local/bin:${PATH}
     export SVNROOT=svn+ssh://svn.corp.yahoo.com/
+
+    [[ $YROOT_NAME ]] && export PS1="\[${blue}\]\t \[${green}\]${YROOT_NAME}@\h\[${white}\]:\[${blue}\]\W \[${white}\]\$ "
 
     alias clothnerve='ssh clothnerve.corp.yahoo.com'
     alias clothnerve-vm0='ssh clothnerve-vm0.corp.yahoo.com'
