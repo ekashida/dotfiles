@@ -35,6 +35,7 @@ alias cdgit='cd ~/repository/git'
 alias cdsvn='cd ~/repository/svn'
 alias cdyui='cd ~/repository/git/yui3'
 alias cdsd='cd ~/repository/git/searchfe_mojito/sd'
+alias cdsx='cd ~/repository/git/searchfe_mojito/sx'
 alias cdmojito='cd ~/repository/svn/mojito/source'
 
 ### MISCELLANEOUS ###
@@ -59,6 +60,9 @@ if [ $USER == 'keugene' ]; then
     alias clothnerve0='ssh clothnerve-vm0.corp.yahoo.com'
     alias clothnerve1='ssh clothnerve-vm1.corp.yahoo.com'
     alias clothnerve2='ssh clothnerve-vm2.corp.yahoo.com'
+    alias clothnerve3='ssh clothnerve-vm3.corp.yahoo.com'
+    alias clothnerve4='ssh clothnerve-vm4.corp.yahoo.com'
+    alias clothnerve5='ssh clothnerve-vm5.corp.yahoo.com'
 
     [ -e /home/y/ ] && alias cdhtdocs='cd /home/y/share/htdocs/'
     [ -e /home/y/ ] && alias errorlog='tail -f /home/y/logs/yapache/error'
