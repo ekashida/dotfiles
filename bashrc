@@ -53,6 +53,7 @@ set -o vi
 if [ $USER == 'keugene' ]; then
     export PATH=/home/y/bin:/usr/local/bin:${PATH}
     export SVNROOT=svn+ssh://svn.corp.yahoo.com/
+    export SVN_SSH=/usr/local/bin/yssh
 
     [[ $YROOT_NAME ]] && export PS1="\[${blue}\]\t \[${green}\]${YROOT_NAME}-yroot\[${white}\]:\[${blue}\]\W \[${white}\]\$ "
 
