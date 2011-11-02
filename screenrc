@@ -4,5 +4,4 @@ startup_message off
 # Use a 30000-line scrollback buffer
 defscrollback 30000
 
-# WTF is going on here? White when active, gray when inactive, and last active number marked with '-'
-hardstatus alwayslastline '%{gk}%= %{wk}%?%-Lw%?%{=b kR}[%{W}%n%f %t%?(%u)%?%{=b kR}]%{= kw}%?%+Lw%?%?%= %{g}]'
+hardstatus alwayslastline '%{= kw}%{gray}%w'
