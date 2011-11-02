@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ln -sf ~/repository/git/ubiquitous/vimrc    ~/.vimrc
+ln -sf ~/repository/git/ubiquitous/screenrc ~/.screenrc
 ln -sf ~/repository/git/ubiquitous/bashrc   ~/.bashrc
 ln -sf ~/repository/git/ubiquitous/bashrc   ~/.bash_profile
 ln -sf ~/repository/git/ubiquitous/inputrc  ~/.inputrc

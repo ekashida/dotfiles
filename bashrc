@@ -34,9 +34,6 @@ alias $LOCALRC='$EDITOR ~/.$LOCALRC; source ~/.$LOCALRC'   # local configs
 alias cdgit='cd ~/repository/git'
 alias cdsvn='cd ~/repository/svn'
 alias cdyui='cd ~/repository/git/yui3'
-alias cdsd='cd ~/repository/git/searchfe_mojito/sd'
-alias cdsx='cd ~/repository/git/searchfe_mojito/sx'
-alias cdmojito='cd ~/repository/svn/mojito/source'
 
 ### MISCELLANEOUS ###
 
@@ -53,7 +50,10 @@ set -o vi
 if [ $USER == 'keugene' ]; then
     export PATH=/home/y/bin:/usr/local/bin:${PATH}
     export SVNROOT=svn+ssh://svn.corp.yahoo.com/
-    export SVN_SSH=/usr/local/bin/yssh
+
+    if [ -e /usr/local/bin/yssh ]; then
+        export SVN_SSH=/usr/local/bin/yssh
+    fi
 
     [[ $YROOT_NAME ]] && export PS1="\[${blue}\]\t \[${green}\]${YROOT_NAME}-yroot\[${white}\]:\[${blue}\]\W \[${white}\]\$ "
 
