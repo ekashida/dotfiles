@@ -1,7 +1,8 @@
 syntax enable
 
 set encoding=utf-8
-set directory=/tmp              " Put swp files in /tmp.
+set noswapfile                  " Cowboy mode.
+"set directory=/tmp              " Put swp files in /tmp.
 
 set ruler                       " Display column and row number.
 set nowrap                      " Prevent lines from wrapping.
