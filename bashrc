@@ -14,7 +14,7 @@ export PS1="\[${BLUE}\]\t \[${GREEN}\]\h\[${WHITE}\]:\[${BLUE}\]\W \[${WHITE}\]\
 export HISTIGNORE="&:ls:[bf]g:history:exit" # & supresses duplicate entries
 export HISTSIZE=1000
 export EDITOR=vim
-export PATH=~/local/bin:$PATH
+export PATH=~/local/bin:/usr/local/bin:$PATH
 
 
 
@@ -50,7 +50,7 @@ set -o vi
 alias ynpm='npm --registry http://ynpm-registry.corp.yahoo.com:4080/'
 
 if [ $USER == 'keugene' ]; then
-    export PATH=/home/y/bin:/usr/local/bin:${PATH}
+    export PATH=/home/y/bin:${PATH}
     export SVNROOT=svn+ssh://svn.corp.yahoo.com/
 
     if [ -e /usr/local/bin/yssh ]; then
