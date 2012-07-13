@@ -7,4 +7,6 @@ ln -sf ~/repository/git/ubiquitous/bashrc   ~/.bash_profile
 ln -sf ~/repository/git/ubiquitous/inputrc  ~/.inputrc
 ln -sf ~/repository/git/ubiquitous/vim      ~/.vim
 
+# mkdir -p ~/.ssh && ln -sf ~/repository/git/ubiquitous/ssh_config ~/.ssh/config
+
 source ~/.bashrc

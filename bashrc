@@ -47,8 +47,6 @@ set -o vi
 
 ### Y! SPECIFIC SETTINGS ###
 
-alias ynpm='npm --registry http://ynpm-registry.corp.yahoo.com:4080/'
-
 if [ $USER == 'keugene' ]; then
     export PATH=/home/y/bin:${PATH}
     export SVNROOT=svn+ssh://svn.corp.yahoo.com/

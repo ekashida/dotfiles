@@ -1,0 +1,12 @@
+Host *
+Compression yes
+
+Host *.yahoo.com
+ForwardAgent yes
+ProxyCommand nc -x127.0.0.1:1080 -X5 %h %p
+
+# Alias to bypass the ProxyCommand for *.yahoo.com
+Host yproxy
+HostName proxy.corp.yahoo.com
+ForwardAgent yes
+LocalForward 1080 socks.corp.yahoo.com:1080
