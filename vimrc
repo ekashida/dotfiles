@@ -1,3 +1,10 @@
+" Allow pathogen.vim to also exist in a private directory
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+
+" Initialize pathogen.vim
+execute pathogen#infect()
+
+
 syntax enable                   " Switches on syntax highlighting
 
 set encoding=utf-8
