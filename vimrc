@@ -12,6 +12,9 @@ filetype plugin on
 " Switches on syntax highlighting
 syntax enable
 
+" Color settings
+highlight LineNr ctermfg=DarkGrey
+
 set encoding=utf-8
 set noswapfile                  " Cowboy mode!
 
