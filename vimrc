@@ -11,7 +11,7 @@ filetype plugin on
 syntax enable
 
 set encoding=utf-8
-set noswapfile                  " Cowboy mode
+set noswapfile                  " Cowboy mode!
 
 set ruler                       " Display column and row number
 set nowrap                      " Prevent lines from wrapping
@@ -21,10 +21,10 @@ set nojoinspaces                " Prevent two spaces after [.?!] when joining li
 
 set smarttab                    " Treat tab and backspace as shiftwidth columns when indenting/dedenting
 set shiftround                  " Indent to a multiple of shiftwidth
-set shiftwidth=4                " Define the number of columns in an indent
+set shiftwidth=4                " Number of columns in an indent
 
 set expandtab                   " Expand inserted tabs into tabstop columns
-set tabstop=4                   " Define the number of columns in a tab character
+set tabstop=4                   " Number of columns in a tab character
 
 set ignorecase                  " Ignore case in search patterns
 set smartcase                   " Override ignorecase option when pattern contains upper-case letters
@@ -32,15 +32,15 @@ set incsearch                   " Jump to the first occurance of a match in real
 set hlsearch                    " Highlight the match
 
 set list                        " Display whitespace characters
-set listchars=tab:>-,trail:$    " Define how to display whitespace characters
+set listchars=tab:>-,trail:$    " Display whitespace characters
 set wildmode=list:longest       " Autocompletion for filenames; complete till longest common substring
 set background=dark             " Syntax coloring scheme for dark backgrounds
 "set virtualedit=all             " Allow traversal of non-existant areas
 
-set relativenumber              " Make number column display how far each line is from the cursor
+set relativenumber              " Number column displays distance from the cursor
 
 set undofile                    " Persistent undo
-set undodir=/tmp
+set undodir=/tmp                " Undo metadata directory
 
 
 " Navigate the displayed lines for wrapped lines
