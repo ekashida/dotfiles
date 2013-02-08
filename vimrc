@@ -1,3 +1,5 @@
+let mapleader = ","
+
 " Allow pathogen.vim to also exist in a private directory
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 
@@ -48,28 +50,25 @@ nmap j gj
 nmap k gk
 
 " Toggle paste.
-nmap ,,p :set paste!<CR>
+nmap <leader><leader>p :set paste!<CR>
 
 " Toggle wrapping.
-nmap ,,w :set wrap!<CR>
+nmap <leader><leader>w :set wrap!<CR>
 
 " Source the .vimrc (only useful from within .vimrc)
-nmap ,,s :source ~/.vimrc<CR>
+nmap <leader><leader>s :source ~/.vimrc<CR>
 
-nmap ,,n :NERDTree<CR>
-nmap ,,m :MRU<CR>
+nmap <leader><leader>n :NERDTree<CR>
+nmap <leader><leader>m :MRU<CR>
 
 " Quit all windows
-nmap ,,q :q<CR>:q<CR>:q<CR>:q<CR>
-
-nmap ,2 :set shiftwidth=2<CR>
-nmap ,4 :set shiftwidth=4<CR>
+nmap <leader><leader>q :q<CR>:q<CR>:q<CR>:q<CR>
 
 " Remove trailng spaces
-nmap ,s :%s/\s\+$//g<CR>
+nmap <leader>s :%s/\s\+$//g<CR>
 
 " Convert tabs into spaces
-nmap ,t :%retab!<CR>
+nmap <leader>t :%retab!<CR>
 
 " Remove underlines from anchor tag link text
 hi def linkBlue ctermfg=DarkBlue
