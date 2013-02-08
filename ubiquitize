@@ -1,12 +1,12 @@
 #!/bin/bash
 
-ln -sf ~/repository/git/ubiquitous/vimrc    ~/.vimrc
-ln -sf ~/repository/git/ubiquitous/screenrc ~/.screenrc
-ln -sf ~/repository/git/ubiquitous/bashrc   ~/.bashrc
-ln -sf ~/repository/git/ubiquitous/bashrc   ~/.bash_profile
-ln -sf ~/repository/git/ubiquitous/inputrc  ~/.inputrc
-ln -sf ~/repository/git/ubiquitous/vim      ~/.vim
+ln -sf ~/repos/ubiquitous/vimrc    ~/.vimrc
+ln -sf ~/repos/ubiquitous/screenrc ~/.screenrc
+ln -sf ~/repos/ubiquitous/bashrc   ~/.bashrc
+ln -sf ~/repos/ubiquitous/bashrc   ~/.bash_profile
+ln -sf ~/repos/ubiquitous/inputrc  ~/.inputrc
+ln -sf ~/repos/ubiquitous/vim      ~/.vim
 
-# mkdir -p ~/.ssh && ln -sf ~/repository/git/ubiquitous/ssh_config ~/.ssh/config
+# mkdir -p ~/.ssh && ln -sf ~/repos/ubiquitous/ssh_config ~/.ssh/config
 
 source ~/.bashrc
