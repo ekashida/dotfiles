@@ -4,8 +4,11 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Initialize pathogen.vim
 execute pathogen#infect()
 
+" Required for jslint.vim
+filetype plugin on
 
-syntax enable                   " Switches on syntax highlighting
+" Switches on syntax highlighting
+syntax enable
 
 set encoding=utf-8
 set noswapfile                  " Cowboy mode
@@ -33,6 +36,12 @@ set listchars=tab:>-,trail:$    " Define how to display whitespace characters
 set wildmode=list:longest       " Autocompletion for filenames; complete till longest common substring
 set background=dark             " Syntax coloring scheme for dark backgrounds
 "set virtualedit=all             " Allow traversal of non-existant areas
+
+set relativenumber              " Make number column display how far each line is from the cursor
+
+set undofile                    " Persistent undo
+set undodir=/tmp
+
 
 " Navigate the displayed lines for wrapped lines
 nmap j gj
