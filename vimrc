@@ -48,6 +48,8 @@ set relativenumber              " Number column displays distance from the curso
 set undofile                    " Persistent undo
 set undodir=/tmp                " Undo metadata directory
 
+" Clear hlsearch highlighting
+nnoremap <leader><space> :noh<cr>
 
 " Navigate the displayed lines for wrapped lines
 nmap j gj
