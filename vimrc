@@ -21,6 +21,7 @@ set noswapfile                  " Cowboy mode!
 set ruler                       " Display column and row number
 set nowrap                      " Prevent lines from wrapping
 set textwidth=79                " Wrap width
+set colorcolumn=79              " Visual width indicator
 set scrolloff=5                 " Lookahead while scrolling
 set nojoinspaces                " Prevent two spaces after [.?!] when joining lines
 "set paste                       " Paste using intended indentation
