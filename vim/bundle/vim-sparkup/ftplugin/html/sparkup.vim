@@ -1,23 +1,3 @@
-" Sparkup
-" Installation:
-"    Copy the contents of vim/ftplugin/ to your ~/.vim/ftplugin directory.
-"
-"        $ cp -R vim/ftplugin ~/.vim/ftplugin/
-"
-" Configuration:
-"   g:sparkup (Default: 'sparkup') -
-"     Location of the sparkup executable. You shouldn't need to change this
-"     setting if you used the install option above.
-"
-"   g:sparkupArgs (Default: '--no-last-newline') -
-"     Additional args passed to sparkup.
-"
-"   g:sparkupExecuteMapping (Default: '<c-e>') -
-"     Mapping used to execute sparkup.
-"
-"   g:sparkupNextMapping (Default: '<c-n>') -
-"     Mapping used to jump to the next empty tag/attribute.
-
 if !exists('g:sparkupExecuteMapping')
   let g:sparkupExecuteMapping = '<c-e>'
 endif
@@ -26,10 +6,10 @@ if !exists('g:sparkupNextMapping')
   let g:sparkupNextMapping = '<c-n>'
 endif
 
-exec 'nmap <buffer> ' . g:sparkupExecuteMapping . ' :call <SID>Sparkup()<cr>'
-exec 'imap <buffer> ' . g:sparkupExecuteMapping . ' <c-g>u<Esc>:call <SID>Sparkup()<cr>'
-exec 'nmap <buffer> ' . g:sparkupNextMapping . ' :call <SID>SparkupNext()<cr>'
-exec 'imap <buffer> ' . g:sparkupNextMapping . ' <c-g>u<Esc>:call <SID>SparkupNext()<cr>'
+exec 'nnoremap <buffer> ' . g:sparkupExecuteMapping . ' :call <SID>Sparkup()<cr>'
+exec 'inoremap <buffer> ' . g:sparkupExecuteMapping . ' <c-g>u<Esc>:call <SID>Sparkup()<cr>'
+exec 'nnoremap <buffer> ' . g:sparkupNextMapping . ' :call <SID>SparkupNext()<cr>'
+exec 'inoremap <buffer> ' . g:sparkupNextMapping . ' <c-g>u<Esc>:call <SID>SparkupNext()<cr>'
 
 if exists('*s:Sparkup')
     finish
