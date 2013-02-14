@@ -31,9 +31,7 @@ alias ll='ls -l'
 alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'
 alias $LOCALRC='$EDITOR ~/.$LOCALRC; source ~/.$LOCALRC'   # local configs
 
-alias cdgit='cd ~/repository/git'
-alias cdsvn='cd ~/repository/svn'
-alias cdyui='cd ~/repository/git/yui3'
+
 
 ### MISCELLANEOUS ###
 
