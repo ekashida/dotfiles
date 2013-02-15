@@ -1,19 +1,22 @@
 #!/bin/bash
 
-# files
+WORKING_DIR=$(pwd)
 
-ln -sf $(pwd)/vimrc         ~/.vimrc
-ln -sf $(pwd)/screenrc      ~/.screenrc
-ln -sf $(pwd)/bashrc        ~/.bashrc
-ln -sf $(pwd)/bashrc        ~/.bash_profile
-ln -sf $(pwd)/inputrc       ~/.inputrc
+ln -sfv $WORKING_DIR/screenrc       ~/.screenrc
+ln -sfv $WORKING_DIR/bashrc         ~/.bashrc           # non-login shells
+ln -sfv $WORKING_DIR/bashrc         ~/.bash_profile     # login shell
+ln -sfv $WORKING_DIR/inputrc        ~/.inputrc
 
 mkdir -p ~/.ssh
-ln -sf $(pwd)/ssh_config    ~/.ssh/config
+ln -sfv $WORKING_DIR/ssh_config     ~/.ssh/config
 
-# directories
-
-ln -sf $(pwd)/vim/                              ~/.vim
+# if `~/.vim/` already exists, the subsequent `ln` command ends up creating a
+# symlink to `vim/` inside `~/.vim/` instead of the `~/.vim/` symlink itself
+if [ -e ~/.vim ]; then
+    rm -rf ~/.vim
+fi
+ln -sfv $WORKING_DIR/vim/           ~/.vim
+ln -sfv $WORKING_DIR/vimrc          ~/.vimrc
 
 # init shell config
 source ~/.bashrc
