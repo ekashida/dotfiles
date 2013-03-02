@@ -65,8 +65,8 @@ nmap <leader><leader>w :set wrap!<cr>
 " Source the .vimrc (only useful from within .vimrc)
 nmap <leader><leader>s :source ~/.vimrc<cr>
 
-nmap <leader><leader>n :NERDTree<cr>
-nmap <leader><leader>m :MRU<cr>
+nmap <leader>n :NERDTree<cr>
+nmap <leader>m :MRU<cr>
 
 " Quit all windows
 nmap <leader><leader>q :q<cr>:q<cr>:q<cr>:q<cr>
