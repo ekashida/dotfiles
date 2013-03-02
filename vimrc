@@ -57,25 +57,25 @@ nmap j gj
 nmap k gk
 
 " Toggle paste.
-nmap <leader><leader>p :set paste!<CR>
+nmap <leader><leader>p :set paste!<cr>
 
 " Toggle wrapping.
-nmap <leader><leader>w :set wrap!<CR>
+nmap <leader><leader>w :set wrap!<cr>
 
 " Source the .vimrc (only useful from within .vimrc)
-nmap <leader><leader>s :source ~/.vimrc<CR>
+nmap <leader><leader>s :source ~/.vimrc<cr>
 
-nmap <leader><leader>n :NERDTree<CR>
-nmap <leader><leader>m :MRU<CR>
+nmap <leader><leader>n :NERDTree<cr>
+nmap <leader><leader>m :MRU<cr>
 
 " Quit all windows
-nmap <leader><leader>q :q<CR>:q<CR>:q<CR>:q<CR>
+nmap <leader><leader>q :q<cr>:q<cr>:q<cr>:q<cr>
 
 " Remove trailng spaces
-nmap <leader>s :%s/\s\+$//g<CR>
+nmap <leader>s :%s/\s\+$//g<cr>
 
 " Convert tabs into spaces
-nmap <leader>t :%retab!<CR>
+nmap <leader>t :%retab!<cr>
 
 " Remove underlines from anchor tag link text
 hi def linkBlue ctermfg=DarkBlue
