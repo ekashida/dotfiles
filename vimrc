@@ -59,8 +59,11 @@ nmap k gk
 " Toggle paste.
 nmap <leader><leader>p :set paste!<cr>
 
-" Toggle wrapping.
+" Toggle wrap.
 nmap <leader><leader>w :set wrap!<cr>
+
+" Toggle relativenumber.
+nmap <leader><leader>r :set relativenumber!<cr>
 
 " Toggle jslint off (hacky, but refreshing the buffer with :edit doesn't work)
 nmap <leader><leader>j :JSLintToggle<cr> <c-w>s <c-w>j :q<cr>
