@@ -44,7 +44,7 @@ set wildmode=list:longest       " Autocompletion for filenames; complete till lo
 set background=dark             " Syntax coloring scheme for dark backgrounds
 "set virtualedit=all             " Allow traversal of non-existant areas
 
-set relativenumber              " Number column displays distance from the cursor
+"set relativenumber              " Number column displays distance from the cursor
 
 set undofile                    " Persistent undo
 set undodir=/tmp                " Undo metadata directory
