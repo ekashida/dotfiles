@@ -1,6 +1,7 @@
 #!/bin/bash
 
 WORKING_DIR=$(pwd)
+INSTALL_DIR=/usr/local/bin
 VIM_DIR=$HOME/.vim
 VIM_BUNDLE_DIR=$VIM_DIR/bundle
 
@@ -9,6 +10,8 @@ ln -sfv $WORKING_DIR/screenrc       ~/.screenrc
 ln -sfv $WORKING_DIR/bashrc         ~/.bashrc           # non-login shells
 ln -sfv $WORKING_DIR/bashrc         ~/.bash_profile     # login shell
 ln -sfv $WORKING_DIR/inputrc        ~/.inputrc
+
+ln -sfv $WORKING_DIR/socksproxy     $INSTALL_DIR/socksproxy
 
 mkdir -p ~/.ssh
 ln -sfv $WORKING_DIR/ssh_config     ~/.ssh/config
