@@ -28,6 +28,10 @@ if (state === 'on') {
         }
         printSocksProxyStatus();
     });
+} else {
+    console.log('Usage:');
+    console.log('  $ socksproxy on');
+    console.log('  $ socksproxy off');
 }
 
 function printSocksProxyStatus () {
