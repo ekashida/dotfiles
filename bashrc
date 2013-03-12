@@ -6,6 +6,9 @@ BLUE='\e[0;34m'
 GREEN='\e[0;32m'
 WHITE='\e[0m'
 
+# For selenium testing
+FIREFOX=/Applications/Firefox.app/Contents/MacOS
+
 
 
 ### EXPORTED ENVIRONMENT VARIABLES ###
@@ -14,7 +17,7 @@ export PS1="\[${BLUE}\]\t \[${GREEN}\]\h\[${WHITE}\]:\[${BLUE}\]\W \[${WHITE}\]\
 export HISTIGNORE="&:ls:[bf]g:history:exit" # & supresses duplicate entries
 export HISTSIZE=1000
 export EDITOR=vim
-export PATH=~/local/bin:/usr/local/bin:$PATH
+export PATH=~/local/bin:/usr/local/bin:${PATH}:${FIREFOX}
 
 
 
