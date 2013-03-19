@@ -26,6 +26,7 @@ if [ -x $(which git) ]; then
     git clone git@github.com:tristen/vim-sparkup.git
     git clone git@github.com:vim-scripts/mru.vim.git
     git clone git@github.com:tpope/vim-fugitive.git
+    git clone git@github.com:msanders/snipmate.vim.git
     popd
 fi
 
