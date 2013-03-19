@@ -18,16 +18,15 @@ mkdir -p ~/.ssh
 ln -sfv $WORKING_DIR/ssh_config     ~/.ssh/config
 
 if [ -x $(which git) ]; then
-    rm -rf $VIM_DIR
     mkdir -p $VIM_BUNDLE_DIR
     pushd $VIM_BUNDLE_DIR
-    git clone git@github.com:tpope/vim-pathogen.git
-    git clone git@github.com:scrooloose/nerdtree.git
-    git clone git@github.com:hallettj/jslint.vim.git
-    git clone git@github.com:tristen/vim-sparkup.git
-    git clone git@github.com:vim-scripts/mru.vim.git
-    git clone git@github.com:tpope/vim-fugitive.git
-    git clone git@github.com:msanders/snipmate.vim.git
+    [ ! -e vim-pathogen ] && git clone git@github.com:tpope/vim-pathogen.git
+    [ ! -e nerdtree     ] && git clone git@github.com:scrooloose/nerdtree.git
+    [ ! -e jslint.vim   ] && git clone git@github.com:hallettj/jslint.vim.git
+    [ ! -e vim-sparkup  ] && git clone git@github.com:tristen/vim-sparkup.git
+    [ ! -e mru.vim      ] && git clone git@github.com:vim-scripts/mru.vim.git
+    [ ! -e vim-fugitive ] && git clone git@github.com:tpope/vim-fugitive.git
+    [ ! -e snipmate.vim ] && git clone git@github.com:msanders/snipmate.vim.git
     popd
 fi
 
