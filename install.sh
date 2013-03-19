@@ -4,6 +4,7 @@ WORKING_DIR=$(pwd)
 INSTALL_DIR=/usr/local/bin
 VIM_DIR=$HOME/.vim
 VIM_BUNDLE_DIR=$VIM_DIR/bundle
+SNIPPETS_DIR=$VIM_BUNDLE_DIR/snipmate.vim/snippets
 
 ln -sfv $WORKING_DIR/vimrc          ~/.vimrc
 ln -sfv $WORKING_DIR/screenrc       ~/.screenrc
@@ -28,6 +29,10 @@ if [ -x $(which git) ]; then
     git clone git@github.com:tpope/vim-fugitive.git
     git clone git@github.com:msanders/snipmate.vim.git
     popd
+fi
+
+if [ -e $SNIPPETS_DIR ]; then
+    ln -sfv $WORKING_DIR/snippets/* $SNIPPETS_DIR
 fi
 
 # init shell config
