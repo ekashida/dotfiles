@@ -6,7 +6,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Initialize pathogen.vim
 execute pathogen#infect()
 
-" Required for jslint.vim
+" Required for jshint.vim
 filetype plugin on
 
 " Switches on syntax highlighting
@@ -65,8 +65,8 @@ nmap <leader><leader>w :set wrap!<cr>
 " Toggle relativenumber.
 nmap <leader><leader>r :set relativenumber!<cr>
 
-" Toggle jslint off (hacky, but refreshing the buffer with :edit doesn't work)
-nmap <leader><leader>j :JSLintToggle<cr> <c-w>s <c-w>j :q<cr>
+" Toggle jshint off (hacky, but refreshing the buffer with :edit doesn't work)
+nmap <leader><leader>j :JSHintToggle<cr> <c-w>s <c-w>j :q<cr>
 
 " Source the .vimrc (only useful from within .vimrc)
 nmap <leader><leader>s :source ~/.vimrc<cr>
