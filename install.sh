@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 WORKING_DIR=$(pwd)
 INSTALL_DIR=/usr/local/bin
