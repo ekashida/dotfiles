@@ -1,6 +1,7 @@
 snippet log
-	console.log('${1}');
-
+	console.log(${1:''});
+snippet ylog
+	Y.log(${1}, '${2}', ${3});
 # Prototype
 snippet proto
 	${1:class_name}.prototype.${2:method_name} =
