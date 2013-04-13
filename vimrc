@@ -21,10 +21,13 @@ set noswapfile                  " Cowboy mode!
 set ruler                       " Display column and row number
 set nowrap                      " Prevent lines from wrapping
 set textwidth=79                " Wrap width
-set colorcolumn=79              " Visual width indicator
+
+if exists('+colorcolumn')
+set colorcolumn=79              " Visual width indicator (7.3+)
+endif
+
 set scrolloff=5                 " Lookahead while scrolling
 set nojoinspaces                " Prevent two spaces after [.?!] when joining lines
-"set paste                       " Paste using intended indentation
 
 set smarttab                    " Treat tab and backspace as shiftwidth columns when indenting/dedenting
 set shiftround                  " Indent to a multiple of shiftwidth
@@ -42,12 +45,12 @@ set list                        " Display whitespace characters
 set listchars=tab:>-,trail:$    " Display whitespace characters
 set wildmode=list:longest       " Autocompletion for filenames; complete till longest common substring
 set background=dark             " Syntax coloring scheme for dark backgrounds
+
+"set paste                       " Paste using intended indentation
 "set virtualedit=all             " Allow traversal of non-existant areas
-
 "set relativenumber              " Number column displays distance from the cursor
-
-set undofile                    " Persistent undo
-set undodir=/tmp                " Undo metadata directory
+"set undofile                    " Persistent undo
+"set undodir=/tmp                " Undo metadata directory
 
 " Clear hlsearch highlighting
 nnoremap <leader><space> :noh<cr>
@@ -68,7 +71,7 @@ nmap <leader><leader>r :set relativenumber!<cr>
 " Toggle jshint off (hacky, but refreshing the buffer with :edit doesn't work)
 nmap <leader><leader>j :JSHintToggle<cr> <c-w>s <c-w>j :q<cr>
 
-" Source the .vimrc (only useful from within .vimrc)
+" Source the .vimrc
 nmap <leader><leader>s :source ~/.vimrc<cr>
 
 nmap <leader>n :NERDTree<cr>
