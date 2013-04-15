@@ -20,7 +20,7 @@ set noswapfile                  " Cowboy mode!
 
 set ruler                       " Display column and row number
 set nowrap                      " Prevent lines from wrapping
-set textwidth=79                " Wrap width
+"set textwidth=79                " Wrap width
 
 if exists('+colorcolumn')
 set colorcolumn=79              " Visual width indicator (7.3+)

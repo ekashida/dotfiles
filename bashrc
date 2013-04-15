@@ -30,6 +30,8 @@ alias w='w|sort'
 alias ls='ls -G'
 alias ll='ls -l'
 
+alias grunt='node_modules/.bin/grunt'
+
 # edit/source these config files in one command
 alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'
 alias $LOCALRC='$EDITOR ~/.$LOCALRC; source ~/.$LOCALRC'   # local configs
@@ -50,13 +52,7 @@ set -o vi
 
 export SVNROOT=svn+ssh://svn.corp.yahoo.com/
 
-alias clothnerve='ssh clothnerve.corp.yahoo.com'
-alias clothnerve0='ssh clothnerve-vm0.corp.yahoo.com'
-alias clothnerve1='ssh clothnerve-vm1.corp.yahoo.com'
-alias clothnerve2='ssh clothnerve-vm2.corp.yahoo.com'
-alias clothnerve3='ssh clothnerve-vm3.corp.yahoo.com'
-alias clothnerve4='ssh clothnerve-vm4.corp.yahoo.com'
-alias clothnerve5='ssh clothnerve-vm5.corp.yahoo.com'
+alias samegame='ssh samegame.corp.gq1.yahoo.com'
 
 if [ $HOME != '/Users/keugene' ]; then
     export PATH=/home/y/bin:${PATH}
