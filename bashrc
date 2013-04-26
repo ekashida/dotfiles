@@ -50,21 +50,4 @@ set -o vi
 
 ### Y! SPECIFIC SETTINGS ###
 
-export SVNROOT=svn+ssh://svn.corp.yahoo.com/
-
 alias samegame='ssh samegame.corp.gq1.yahoo.com'
-
-if [ $HOME != '/Users/keugene' ]; then
-    export PATH=/home/y/bin:${PATH}
-
-    if [ -e /usr/local/bin/yssh ]; then
-        export SVN_SSH=/usr/local/bin/yssh
-    fi
-
-    alias cdhtdocs='cd /home/y/share/htdocs/'
-    alias errorlog='tail -f /home/y/logs/yapache/error'
-
-    function create_link_package {
-        yinst create -t link $1 -i --clean && rm -rf *tgz
-    }
-fi
