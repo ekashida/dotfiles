@@ -4,6 +4,7 @@ Compression yes
 Host *.yahoo.com
 ForwardAgent yes
 ProxyCommand nc -x127.0.0.1:1080 -X5 %h %p
+IdentityFile ~/.ssh/id_rsa.yahoo
 
 # Alias to bypass the ProxyCommand for *.yahoo.com
 Host yproxy
