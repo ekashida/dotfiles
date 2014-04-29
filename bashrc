@@ -43,9 +43,3 @@ alias $LOCALRC='$EDITOR ~/.$LOCALRC; source ~/.$LOCALRC'   # local configs
 
 # vim bindings for bash
 set -o vi
-
-
-
-### Y! SPECIFIC SETTINGS ###
-
-alias samegame='ssh samegame.corp.gq1.yahoo.com'
