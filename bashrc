@@ -30,8 +30,6 @@ alias w='w|sort'
 alias ls='ls -G'
 alias ll='ls -l'
 
-alias grunt='node_modules/.bin/grunt'
-
 # edit/source these config files in one command
 alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'
 alias $LOCALRC='$EDITOR ~/.$LOCALRC; source ~/.$LOCALRC'   # local configs
