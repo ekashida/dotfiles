@@ -89,3 +89,6 @@ nmap <leader>t :%retab!<cr>
 " Remove underlines from anchor tag link text
 hi def linkBlue ctermfg=DarkBlue
 hi def link htmlLink linkBlue
+
+" associate *.jsx with javascript filetype
+au BufRead,BufNewFile *.jsx setfiletype javascript
