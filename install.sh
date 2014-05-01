@@ -35,6 +35,3 @@ fi
 if [ -e $SNIPPETS_DIR ]; then
     ln -sfv $WORKING_DIR/snippets/* $SNIPPETS_DIR
 fi
-
-# init shell config
-source ~/.bashrc
