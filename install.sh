@@ -12,6 +12,7 @@ ln -sfv $WORKING_DIR/bashrc         ~/.bashrc           # non-login shells
 ln -sfv $WORKING_DIR/bashrc         ~/.bash_profile     # login shell
 ln -sfv $WORKING_DIR/inputrc        ~/.inputrc
 ln -sfv $WORKING_DIR/jshintrc       ~/.jshintrc
+ln -sfv $WORKING_DIR/gitconfig      ~/.gitconfig
 
 ln -sfv $WORKING_DIR/socksproxy     $INSTALL_DIR/socksproxy
 
