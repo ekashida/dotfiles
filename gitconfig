@@ -1,0 +1,10 @@
+[user]
+	name = Eugene Kashida
+	email = keugene@yahoo-inc.com
+[merge]
+	tool = vimdiff
+[color]
+	branch = auto
+	status = auto
+	interactive = auto
+	diff = auto
