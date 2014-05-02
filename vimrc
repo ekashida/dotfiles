@@ -9,6 +9,9 @@ execute pathogen#infect()
 " Required for jshint.vim
 filetype plugin on
 
+" Only lint on file write
+let JSHintUpdateWriteOnly=1
+
 " Switches on syntax highlighting
 syntax enable
 
