@@ -29,6 +29,7 @@ if [ -x $(which git) ]; then
     [ ! -e mru.vim      ] && git clone git@github.com:vim-scripts/mru.vim.git
     [ ! -e vim-fugitive ] && git clone git@github.com:tpope/vim-fugitive.git
     [ ! -e snipmate.vim ] && git clone git@github.com:msanders/snipmate.vim.git
+    [ ! -e vim-javascript   ] && git clone https://github.com/pangloss/vim-javascript.git
     popd
 fi
 
