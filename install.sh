@@ -24,7 +24,8 @@ if [ -x $(which git) ]; then
     pushd $VIM_BUNDLE_DIR
     [ ! -e vim-pathogen     ] && git clone git@github.com:tpope/vim-pathogen.git
     [ ! -e nerdtree         ] && git clone git@github.com:scrooloose/nerdtree.git
-    [ ! -e jshint.vim       ] && git clone git@github.com:wookiehangover/jshint.vim.git
+    # Clone from git@github.com:wookiehangover/jshint.vim.git once the following PR is merged: https://github.com/wookiehangover/jshint.vim/pull/33
+    [ ! -e jshint.vim       ] && git clone git@github.com:ekashida/jshint.vim.git
     [ ! -e vim-sparkup      ] && git clone git@github.com:tristen/vim-sparkup.git
     [ ! -e mru.vim          ] && git clone git@github.com:vim-scripts/mru.vim.git
     [ ! -e vim-fugitive     ] && git clone git@github.com:tpope/vim-fugitive.git
