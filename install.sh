@@ -32,6 +32,7 @@ if [ -x $(which git) ]; then
     [ ! -e snipmate.vim     ] && git clone git@github.com:msanders/snipmate.vim.git
     [ ! -e vim-javascript   ] && git clone git@github.com:pangloss/vim-javascript.git
     [ ! -e vim-node         ] && git clone git@github.com:moll/vim-node.git
+    [ ! -e editorconfig-vim ] && git clone git@github.com:editorconfig/editorconfig-vim.git
     popd
 fi
 
