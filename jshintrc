@@ -1,4 +1,5 @@
 {
+    "node":                    true,
     "bitwise":                 false,
     "curly":                   true,
     "eqeqeq":                  true,
