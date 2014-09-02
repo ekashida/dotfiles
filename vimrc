@@ -34,10 +34,10 @@ set nojoinspaces                " Prevent two spaces after [.?!] when joining li
 
 set smarttab                    " Treat tab and backspace as shiftwidth columns when indenting/dedenting
 set shiftround                  " Indent to a multiple of shiftwidth
-set shiftwidth=4                " Number of columns in an indent
+set shiftwidth=2                " Number of columns in an indent
 
 set expandtab                   " Expand inserted tabs into tabstop columns
-set tabstop=4                   " Number of columns in a tab character
+set tabstop=2                   " Number of columns in a tab character
 
 set ignorecase                  " Ignore case in search patterns
 set smartcase                   " Override ignorecase option when pattern contains upper-case letters
