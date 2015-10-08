@@ -16,9 +16,6 @@ ln -sfv $WORKING_DIR/gitconfig      ~/.gitconfig
 
 ln -sfv $WORKING_DIR/socksproxy     $INSTALL_DIR/socksproxy
 
-mkdir -p ~/.ssh
-ln -sfv $WORKING_DIR/ssh_config     ~/.ssh/config
-
 if [ -x $(which git) ]; then
     mkdir -p $VIM_BUNDLE_DIR
     pushd $VIM_BUNDLE_DIR
