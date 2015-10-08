@@ -43,3 +43,6 @@ alias git-remote-branch-clean="git branch -r --merged | grep -v master | sed 's/
 
 # vim bindings for bash
 set -o vi
+
+# install z (https://github.com/rupa/z/)
+[[ -e ~/repos/z ]] && source ~/repos/z/z.sh

@@ -5,6 +5,7 @@ INSTALL_DIR=/usr/local/bin
 VIM_DIR=$HOME/.vim
 VIM_BUNDLE_DIR=$VIM_DIR/bundle
 SNIPPETS_DIR=$VIM_BUNDLE_DIR/snipmate.vim/snippets
+REPOS_DIR=$HOME/repos
 
 ln -sfv $WORKING_DIR/vimrc          ~/.vimrc
 ln -sfv $WORKING_DIR/screenrc       ~/.screenrc
@@ -29,6 +30,11 @@ if [ -x $(which git) ]; then
     [ ! -e vim-javascript   ] && git clone git@github.com:pangloss/vim-javascript.git
     [ ! -e vim-node         ] && git clone git@github.com:moll/vim-node.git
     [ ! -e editorconfig-vim ] && git clone git@github.com:editorconfig/editorconfig-vim.git
+    popd
+
+    mkdir -p $REPOS_DIR
+    pushd $REPOS_DIR
+    [ ! -e z                ] && git clone git@github.com:rupa/z.git
     popd
 fi
 
