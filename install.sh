@@ -34,7 +34,13 @@ if [ -x $(which git) ]; then
 
     mkdir -p $REPOS_DIR
     pushd $REPOS_DIR
-    [ ! -e z                ] && git clone git@github.com:rupa/z.git
+
+    # Install for z happens in bashrc
+    [ ! -e z ] && git clone git@github.com:rupa/z.git
+
+    [ ! -e n ] && git clone git@github.com:tj/n.git
+    pushd n && make install && popd
+
     popd
 fi
 
