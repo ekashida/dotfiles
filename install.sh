@@ -23,7 +23,6 @@ if [ -x $(which git) ]; then
     [ ! -e nerdtree         ] && git clone git@github.com:scrooloose/nerdtree.git
     [ ! -e jshint.vim       ] && git clone git@github.com:wookiehangover/jshint.vim.git
     [ ! -e vim-sparkup      ] && git clone git@github.com:tristen/vim-sparkup.git
-    [ ! -e mru.vim          ] && git clone git@github.com:vim-scripts/mru.vim.git
     [ ! -e vim-fugitive     ] && git clone git@github.com:tpope/vim-fugitive.git
     [ ! -e vim-javascript   ] && git clone git@github.com:pangloss/vim-javascript.git
     [ ! -e editorconfig-vim ] && git clone git@github.com:editorconfig/editorconfig-vim.git
