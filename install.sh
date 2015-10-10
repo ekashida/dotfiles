@@ -26,7 +26,6 @@ if [ -x $(which git) ]; then
     [ ! -e mru.vim          ] && git clone git@github.com:vim-scripts/mru.vim.git
     [ ! -e vim-fugitive     ] && git clone git@github.com:tpope/vim-fugitive.git
     [ ! -e vim-javascript   ] && git clone git@github.com:pangloss/vim-javascript.git
-    [ ! -e vim-node         ] && git clone git@github.com:moll/vim-node.git
     [ ! -e editorconfig-vim ] && git clone git@github.com:editorconfig/editorconfig-vim.git
     popd
 
