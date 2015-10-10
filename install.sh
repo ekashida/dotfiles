@@ -27,6 +27,7 @@ if [ -x $(which git) ]; then
     [ ! -e vim-fugitive     ] && git clone git@github.com:tpope/vim-fugitive.git
     [ ! -e vim-javascript   ] && git clone git@github.com:pangloss/vim-javascript.git
     [ ! -e editorconfig-vim ] && git clone git@github.com:editorconfig/editorconfig-vim.git
+    [ ! -e ctrlp.vim        ] && git clone git@github.com:kien/ctrlp.vim.git
     popd
 
     mkdir -p $REPOS_DIR

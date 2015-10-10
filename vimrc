@@ -78,7 +78,8 @@ nmap <leader><leader>j :JSHintToggle<cr> <c-w>s <c-w>j :q<cr>
 nmap <leader><leader>s :source ~/.vimrc<cr>
 
 nmap <leader>n :NERDTree<cr>
-nmap <leader>m :MRU<cr>
+nmap <leader>m :CtrlPMRU<cr>
+nmap <leader>f :CtrlP<cr>
 
 " Quit all windows
 nmap <leader><leader>q :q<cr>:q<cr>:q<cr>:q<cr>
