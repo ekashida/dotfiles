@@ -4,7 +4,6 @@ WORKING_DIR=$(pwd)
 INSTALL_DIR=/usr/local/bin
 VIM_DIR=$HOME/.vim
 VIM_BUNDLE_DIR=$VIM_DIR/bundle
-SNIPPETS_DIR=$VIM_BUNDLE_DIR/snipmate.vim/snippets
 REPOS_DIR=$HOME/repos
 
 ln -sfv $WORKING_DIR/vimrc          ~/.vimrc
@@ -26,7 +25,6 @@ if [ -x $(which git) ]; then
     [ ! -e vim-sparkup      ] && git clone git@github.com:tristen/vim-sparkup.git
     [ ! -e mru.vim          ] && git clone git@github.com:vim-scripts/mru.vim.git
     [ ! -e vim-fugitive     ] && git clone git@github.com:tpope/vim-fugitive.git
-    [ ! -e snipmate.vim     ] && git clone git@github.com:msanders/snipmate.vim.git
     [ ! -e vim-javascript   ] && git clone git@github.com:pangloss/vim-javascript.git
     [ ! -e vim-node         ] && git clone git@github.com:moll/vim-node.git
     [ ! -e editorconfig-vim ] && git clone git@github.com:editorconfig/editorconfig-vim.git
@@ -42,8 +40,4 @@ if [ -x $(which git) ]; then
     pushd n && make install && popd
 
     popd
-fi
-
-if [ -e $SNIPPETS_DIR ]; then
-    ln -sfv $WORKING_DIR/snippets/* $SNIPPETS_DIR
 fi
