@@ -19,14 +19,14 @@ ln -sfv $WORKING_DIR/socksproxy     $INSTALL_DIR/socksproxy
 if [ -x $(which git) ]; then
     mkdir -p $VIM_BUNDLE_DIR
     pushd $VIM_BUNDLE_DIR
-    [ ! -e vim-pathogen     ] && git clone git@github.com:tpope/vim-pathogen.git
-    [ ! -e nerdtree         ] && git clone git@github.com:scrooloose/nerdtree.git
+    [ ! -e ctrlp.vim        ] && git clone git@github.com:kien/ctrlp.vim.git
+    [ ! -e editorconfig-vim ] && git clone git@github.com:editorconfig/editorconfig-vim.git
     [ ! -e jshint.vim       ] && git clone git@github.com:wookiehangover/jshint.vim.git
-    [ ! -e vim-sparkup      ] && git clone git@github.com:tristen/vim-sparkup.git
+    [ ! -e nerdtree         ] && git clone git@github.com:scrooloose/nerdtree.git
     [ ! -e vim-fugitive     ] && git clone git@github.com:tpope/vim-fugitive.git
     [ ! -e vim-javascript   ] && git clone git@github.com:pangloss/vim-javascript.git
-    [ ! -e editorconfig-vim ] && git clone git@github.com:editorconfig/editorconfig-vim.git
-    [ ! -e ctrlp.vim        ] && git clone git@github.com:kien/ctrlp.vim.git
+    [ ! -e vim-pathogen     ] && git clone git@github.com:tpope/vim-pathogen.git
+    [ ! -e vim-sparkup      ] && git clone git@github.com:tristen/vim-sparkup.git
     popd
 
     mkdir -p $REPOS_DIR
