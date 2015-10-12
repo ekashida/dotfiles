@@ -21,8 +21,8 @@ if [ -x $(which git) ]; then
     pushd $VIM_BUNDLE_DIR
     [ ! -e ctrlp.vim        ] && git clone git@github.com:kien/ctrlp.vim.git
     [ ! -e editorconfig-vim ] && git clone git@github.com:editorconfig/editorconfig-vim.git
-    [ ! -e jshint.vim       ] && git clone git@github.com:wookiehangover/jshint.vim.git
     [ ! -e nerdtree         ] && git clone git@github.com:scrooloose/nerdtree.git
+    [ ! -e syntastic        ] && git clone git@github.com:scrooloose/syntastic.git
     [ ! -e vim-fugitive     ] && git clone git@github.com:tpope/vim-fugitive.git
     [ ! -e vim-javascript   ] && git clone git@github.com:pangloss/vim-javascript.git
     [ ! -e vim-pathogen     ] && git clone git@github.com:tpope/vim-pathogen.git
@@ -39,4 +39,10 @@ if [ -x $(which git) ]; then
     pushd n && make install && popd
 
     popd
+fi
+
+if [ -x $(which npm) ]; then
+    npm -g install eslint
+    npm -g install babel-eslint
+    npm -g install eslint-plugin-react
 fi

@@ -6,12 +6,6 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Initialize pathogen.vim
 execute pathogen#infect()
 
-" Required for jshint.vim
-filetype plugin on
-
-" Only lint on file write
-let JSHintUpdateWriteOnly=1
-
 " Switches on syntax highlighting
 syntax enable
 
@@ -71,9 +65,6 @@ nmap <leader><leader>w :set wrap!<cr>
 " Toggle relativenumber.
 nmap <leader><leader>r :set relativenumber!<cr>
 
-" Toggle jshint off (hacky, but refreshing the buffer with :edit doesn't work)
-nmap <leader><leader>j :JSHintToggle<cr> <c-w>s <c-w>j :q<cr>
-
 " Source the .vimrc
 nmap <leader><leader>s :source ~/.vimrc<cr>
 
@@ -96,3 +87,17 @@ hi def link htmlLink linkBlue
 
 " associate *.jsx with javascript filetype
 au BufRead,BufNewFile *.jsx setfiletype javascript
+
+
+" https://github.com/scrooloose/syntastic#3-recommended-settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['eslint']
+
