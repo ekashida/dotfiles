@@ -28,6 +28,7 @@ alias ls='ls -G'
 alias ll='ls -l'
 
 # edit/source these config files in one command
+alias vimrc='$EDITOR ~/.vimrc'
 alias bashrc='$EDITOR ~/.bashrc; source ~/.bashrc'
 alias $LOCALRC='$EDITOR ~/.$LOCALRC; source ~/.$LOCALRC'   # local configs
 
