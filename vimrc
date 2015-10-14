@@ -88,6 +88,9 @@ hi def link htmlLink linkBlue
 " associate *.jsx with javascript filetype
 au BufRead,BufNewFile *.jsx setfiletype javascript
 
+" associate *.cmp with xml filetype
+au BufRead,BufNewFile *.cmp setfiletype xml
+
 
 " https://github.com/scrooloose/syntastic#3-recommended-settings
 set statusline+=%#warningmsg#
