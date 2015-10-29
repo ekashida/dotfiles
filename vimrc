@@ -103,6 +103,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_javascript_checkers = ['eslint']
+let g:loaded_syntastic_java_javac_checker = 1
 
 " ctrlp settings
 let g:ctrlp_user_command = 'ag %s --nocolor -g ""'
