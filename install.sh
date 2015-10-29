@@ -19,6 +19,7 @@ ln -sfv $WORKING_DIR/socksproxy     $INSTALL_DIR/socksproxy
 if [ -x $(which git) ]; then
     mkdir -p $VIM_BUNDLE_DIR
     pushd $VIM_BUNDLE_DIR
+    [ ! -e ag.vim           ] && git clone git@github.com:rking/ag.vim.git
     [ ! -e ctrlp.vim        ] && git clone git@github.com:ctrlpvim/ctrlp.vim.git
     [ ! -e editorconfig-vim ] && git clone git@github.com:editorconfig/editorconfig-vim.git
     [ ! -e nerdtree         ] && git clone git@github.com:scrooloose/nerdtree.git
