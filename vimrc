@@ -70,7 +70,6 @@ nmap <leader><leader>s :source ~/.vimrc<cr>
 
 nmap <leader>n :NERDTree<cr>
 nmap <leader>m :CtrlPMRU<cr>
-nmap <leader>f :CtrlP<cr>
 
 " Quit all windows
 nmap <leader><leader>q :q<cr>:q<cr>:q<cr>:q<cr>
