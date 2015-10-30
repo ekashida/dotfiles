@@ -38,7 +38,7 @@ begin
     for clone_url in $vim_plugin_clone_urls
       set dirname (basename $clone_url | sed 's/\.git//')
       if not test -d $dirname
-        git clone $clone_url
+        git clone $clone_url &
       end
     end
 
