@@ -2,22 +2,28 @@
 
 begin
   set working_dir (pwd)
-  set config_dir ~/.config/fish
+  set config_dir ~/.config
 
-  mkdir -p $config_dir
+  set fish_config_dir "$config_dir/fish"
+  mkdir -p $fish_config_dir
 
   set source "$working_dir/fish/config.fish"
-  set target "$config_dir/config.fish"
+  set target "$fish_config_dir/config.fish"
   if not test -L $target
     ln -sv $source $target
   end
 
   set source "$working_dir/fish/functions"
-  set target "$config_dir/functions"
+  set target "$fish_config_dir/functions"
   if not test -L $target
     ln -sv $source $target
   end
 
+  set source "$working_dir/vimrc"
+  set target "$HOME/.vimrc"
+  if not test -L $target
+    ln -sv $source $target
+  end
 
   if test -x (which git)
     set vim_bundle_dir "$HOME/.vim/bundle"
