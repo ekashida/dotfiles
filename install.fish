@@ -6,16 +6,15 @@ begin
 
   mkdir -p $config_dir
 
-  set -l source_config (printf '%s/fish/config.fish' $working_dir)
-  set -l target_config (printf '%s/config.fish' $config_dir)
-  if not test -L $target_config
-    ln -sfv $source_config $target_config
+  set -l source (printf '%s/fish/config.fish' $working_dir)
+  set -l target (printf '%s/config.fish' $config_dir)
+  if not test -L $target
+    ln -sv $source $target
   end
 
-  set -l source_function_dir (printf '%s/fish/functions' $working_dir)
-  set -l target_function_dir (printf '%s/functions' $config_dir)
-  # Quick check, since the force option doesn't seem to be working for ln
-  if not test -L $target_function_dir
-    ln -sv $source_function_dir $target_function_dir
+  set -l source (printf '%s/fish/functions' $working_dir)
+  set -l target (printf '%s/functions' $config_dir)
+  if not test -L $target
+    ln -sv $source $target
   end
 end
