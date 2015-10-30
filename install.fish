@@ -23,15 +23,25 @@ begin
     set vim_bundle_dir "$HOME/.vim/bundle"
     mkdir -p $vim_bundle_dir
     pushd $vim_bundle_dir
-    [ ! -e ag.vim           ]; and git clone git@github.com:rking/ag.vim.git
-    [ ! -e ctrlp.vim        ]; and git clone git@github.com:ctrlpvim/ctrlp.vim.git
-    [ ! -e editorconfig-vim ]; and git clone git@github.com:editorconfig/editorconfig-vim.git
-    [ ! -e nerdtree         ]; and git clone git@github.com:scrooloose/nerdtree.git
-    [ ! -e syntastic        ]; and git clone git@github.com:scrooloose/syntastic.git
-    [ ! -e vim-fugitive     ]; and git clone git@github.com:tpope/vim-fugitive.git
-    [ ! -e vim-javascript   ]; and git clone git@github.com:pangloss/vim-javascript.git
-    [ ! -e vim-pathogen     ]; and git clone git@github.com:tpope/vim-pathogen.git
-    [ ! -e vim-sparkup      ]; and git clone git@github.com:tristen/vim-sparkup.git
+
+    set vim_plugin_clone_urls \
+      git@github.com:rking/ag.vim.git \
+      git@github.com:ctrlpvim/ctrlp.vim.git \
+      git@github.com:editorconfig/editorconfig-vim.git \
+      git@github.com:scrooloose/nerdtree.git \
+      git@github.com:scrooloose/syntastic.git \
+      git@github.com:tpope/vim-fugitive.git \
+      git@github.com:pangloss/vim-javascript.git \
+      git@github.com:tpope/vim-pathogen.git \
+      git@github.com:tristen/vim-sparkup.git \
+
+    for clone_url in $vim_plugin_clone_urls
+      set dirname (basename $clone_url | sed 's/\.git//')
+      if not test -d $dirname
+        git clone $clone_url
+      end
+    end
+
     popd
 
     set repos_dir "$HOME/repos"
