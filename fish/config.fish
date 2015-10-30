@@ -21,7 +21,7 @@ end
 
 
 begin
-  set localrc_path ~/.config/fish/fish.config.local
+  set localrc_path ~/.config/fish/config.fish.local
 
   function localrc
     vim $localrc_path
