@@ -43,4 +43,16 @@ begin
     end
     popd
   end
+
+  if test -x (which npm)
+    set -l node_modules_dir /usr/local/lib/node_modules
+    set -l modules eslint babel-eslint eslint-plugin-react
+
+    for module in $modules
+      set module_dir "$node_modules_dir/$module"
+      if not test -d $module_dir
+        npm -g install $module
+      end
+    end
+  end
 end
