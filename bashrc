@@ -3,14 +3,16 @@
 
 LOCALRC='localrc'
 BLUE='\e[0;34m'
+BOLD_BLUE='\e[1;34m'
 GREEN='\e[0;32m'
+BOLD_GREEN='\e[1;32m'
 WHITE='\e[0m'
 
 
 
 ### EXPORTED ENVIRONMENT VARIABLES ###
 
-export PS1="\[${BLUE}\]\t \[${GREEN}\]\h\[${WHITE}\]:\[${BLUE}\]\W \[${WHITE}\]\$ "
+export PS1="\[${BLUE}\]\t \[${GREEN}\]\h\[${WHITE}\]:\[${BOLD_BLUE}\]\w \[${WHITE}\]\$ "
 export HISTIGNORE="&:ls:[bf]g:history:exit" # & supresses duplicate entries
 export HISTSIZE=1000
 export EDITOR=vim
