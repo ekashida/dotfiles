@@ -89,6 +89,7 @@ au BufRead,BufNewFile *.jsx setfiletype javascript
 
 " associate *.cmp with xml filetype
 au BufRead,BufNewFile *.cmp setfiletype xml
+au BufRead,BufNewFile *.app setfiletype xml
 
 
 " https://github.com/scrooloose/syntastic#3-recommended-settings
