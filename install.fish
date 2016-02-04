@@ -19,6 +19,18 @@ begin
     ln -sv $source $target
   end
 
+  set source "$working_dir/screenrc"
+  set target "$HOME/.screenrc"
+  if not test -L $target
+    ln -sv $source $target
+  end
+
+  set source "$working_dir/gitconfig"
+  set target "$HOME/.gitconfig"
+  if not test -L $target
+    ln -sv $source $target
+  end
+
   set source "$working_dir/vimrc"
   set target "$HOME/.vimrc"
   if not test -L $target
