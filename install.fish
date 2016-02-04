@@ -56,6 +56,7 @@ begin
     if not test -d n
       git clone git@github.com:tj/n.git
       pushd n; and make install; and popd
+      n stable
     end
     if not test -d z-fish
       git clone git@github.com:sjl/z-fish.git
