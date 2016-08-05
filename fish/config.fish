@@ -23,13 +23,13 @@ end
 begin
   set localrc_path ~/.config/fish/config.fish.local
 
-  function localrc
-    vim $localrc_path
+  function source_localrc
     source $localrc_path
   end
 
-  function source_localrc
-    source $localrc_path
+  function localrc
+    vim $localrc_path
+    source_localrc
   end
 
   source_localrc
