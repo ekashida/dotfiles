@@ -78,7 +78,7 @@ begin
 
   if test -x (which npm)
     set node_modules_dir /usr/local/lib/node_modules
-    set modules eslint babel-eslint eslint-plugin-react
+    set modules eslint babel-eslint
 
     for module in $modules
       set module_dir "$node_modules_dir/$module"
