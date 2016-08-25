@@ -3,7 +3,7 @@ begin
     # Overriding this function to disable indicator for vi mode
   end
 
-  fish_vi_mode
+  fish_vi_key_bindings
 
   set --export EDITOR vim
 end
