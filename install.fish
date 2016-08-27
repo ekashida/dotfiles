@@ -6,6 +6,7 @@ set fish_config_dir "$config_dir/fish"
 
 mkdir -p $fish_config_dir
 
+ln -Fsv "$working_dir/fish/alias.fish"    "$fish_config_dir/alias.fish"
 ln -Fsv "$working_dir/fish/config.fish"   "$fish_config_dir/config.fish"
 ln -Fsv "$working_dir/fish/functions"     "$fish_config_dir"
 ln -Fsv "$working_dir/screenrc"           "$HOME/.screenrc"
