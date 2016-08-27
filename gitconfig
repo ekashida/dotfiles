@@ -1,12 +1,3 @@
 [user]
 	name = Eugene Kashida
 	email = ekashida@gmail.com
-[merge]
-	tool = vimdiff
-[color]
-	branch = auto
-	status = auto
-	interactive = auto
-	diff = auto
-[push]
-	default = simple
