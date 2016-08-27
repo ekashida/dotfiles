@@ -1,4 +1,3 @@
-set background=dark             " Syntax coloring scheme for dark backgrounds
 set colorcolumn=79              " Visual width indicator (7.3+)
 set expandtab                   " Expand inserted tabs into tabstop columns
 set ignorecase                  " Ignore case in search patterns
@@ -45,11 +44,20 @@ au BufRead,BufNewFile *.app setfiletype xml
 
 call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
+Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 call plug#end()
 
 
 " ctrlp settings
 let g:ctrlp_user_command = 'ag %s --nocolor -g ""'  " ctrlp_show_hidden, ctrlp_custom_ignore, and wildignore are not used when ctrlp_user_command is defined; use .agignore instead
+
+" seoul256 settings
+"let g:seoul256_background = 235 " 233 (darkest) <-> 256 (lightest)
+"colo seoul256
+
+" tomorrow-theme
+colorscheme tomorrow-night-eighties
