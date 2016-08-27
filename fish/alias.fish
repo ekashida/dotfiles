@@ -5,6 +5,7 @@ alias rm 'rm -i'
 alias ll 'ls -l'
 alias ls 'ls -G'
 
+alias vi nvim
 alias vim nvim
 
 alias git-local-branch-clean 'git branch --merged | grep -v master | xargs -n 1 git branch -d'
