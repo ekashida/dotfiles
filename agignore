@@ -1,0 +1,8 @@
+*.java
+*.jpg
+*.svg
+*.pdf
+*.png
+bin/
+build/
+java/

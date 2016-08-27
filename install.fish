@@ -9,6 +9,7 @@ set nvim_plugin_plug "$nvim_config_dir/autoload/plug.vim"
 mkdir -p $fish_config_dir
 mkdir -p $nvim_config_dir
 
+ln -Fsv "$working_dir/agignore"           "$HOME/.agignore"
 ln -Fsv "$working_dir/fish/alias.fish"    "$fish_config_dir/alias.fish"
 ln -Fsv "$working_dir/fish/config.fish"   "$fish_config_dir/config.fish"
 ln -Fsv "$working_dir/fish/functions"     "$fish_config_dir"
