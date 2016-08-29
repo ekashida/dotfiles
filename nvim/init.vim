@@ -46,6 +46,7 @@ call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
