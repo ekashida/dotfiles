@@ -44,18 +44,31 @@ au BufRead,BufNewFile *.app setfiletype xml
 
 
 call plug#begin()
+Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
-Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 
 " ctrlp settings
 let g:ctrlp_user_command = 'ag %s --nocolor -g ""'  " ctrlp_show_hidden, ctrlp_custom_ignore, and wildignore are not used when ctrlp_user_command is defined; use .agignore instead
+
+" syntastic settings
+let g:airline#extensions#syntastic#enabled = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = "node_modules/.bin/eslint" " Use the local eslint install since eslint global does not look at local configs
+let g:syntastic_json_checkers=['jsonlint']
+"let g:syntastic_debug = 1
 
 " seoul256 settings
 "let g:seoul256_background = 235 " 233 (darkest) <-> 256 (lightest)
