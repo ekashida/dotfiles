@@ -44,7 +44,7 @@ au BufRead,BufNewFile *.app setfiletype xml
 
 call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
@@ -59,5 +59,6 @@ let g:ctrlp_user_command = 'ag %s --nocolor -g ""'  " ctrlp_show_hidden, ctrlp_c
 "let g:seoul256_background = 235 " 233 (darkest) <-> 256 (lightest)
 "colo seoul256
 
-" tomorrow-theme
+" tomorrow-theme settings
+"colorscheme tomorrow-night
 colorscheme tomorrow-night-eighties
