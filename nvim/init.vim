@@ -3,6 +3,7 @@ set expandtab                   " Expand inserted tabs into tabstop columns
 set ignorecase                  " Ignore case in search patterns
 set list                        " Display whitespace characters
 set listchars=tab:>-,trail:$    " Display whitespace characters
+set mouse-=a                    " Prevent neovim from screwing with my mouse
 set nojoinspaces                " Prevent two spaces after [.?!] when joining lines
 set noswapfile                  " Cowboy mode!
 set nowrap                      " Prevent lines from wrapping
