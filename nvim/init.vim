@@ -47,7 +47,7 @@ call plug#begin()
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/seoul256.vim'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
@@ -66,8 +66,8 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = "node_modules/.bin/eslint" " Use the local eslint install since eslint global does not look at local configs
-let g:syntastic_json_checkers=['jsonlint']
+let g:syntastic_javascript_eslint_exec = "node_modules/.bin/eslint" " Use the local eslint install since global eslint does not look at local eslint configs
+let g:syntastic_json_checkers = ['jsonlint']
 "let g:syntastic_debug = 1
 
 " seoul256 settings
