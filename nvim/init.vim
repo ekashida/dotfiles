@@ -46,6 +46,7 @@ au BufRead,BufNewFile *.app setfiletype xml
 call plug#begin()
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 Plug 'scrooloose/syntastic'
