@@ -11,10 +11,11 @@ git clone git@github.com:ekashida/dotfiles.git
 
 1. Install [brew][]
 1. Install [brew][] bottles
-  - `brew install git`
-  - `brew install vim`
-  - `brew install fish`
   - `brew install ag`
+  - `brew install fish`
+  - `brew install git`
+  - `brew install tidy-html5`
+  - `brew install vim`
 1. Install [neovim][]
   1. `brew tap neovim/neovim`
   1. `brew install --HEAD neovim`
