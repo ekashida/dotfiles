@@ -18,7 +18,7 @@ let mapleader = ","
 nmap <leader><leader>u :source ~/.config/nvim/init.vim<cr>
 
 " Quit all windows
-nmap <leader><leader>q :q<cr>:q<cr>:q<cr>:q<cr>
+nmap <leader><leader>q :qall
 
 " Toggle nerdtree
 nmap <leader>n :NERDTreeToggle<cr>
