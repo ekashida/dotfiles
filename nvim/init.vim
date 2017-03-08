@@ -7,6 +7,7 @@ set mouse-=a                    " Prevent neovim from screwing with my mouse
 set nojoinspaces                " Prevent two spaces after [.?!] when joining lines
 set noswapfile                  " Cowboy mode!
 set nowrap                      " Prevent lines from wrapping
+set relativenumber              " Show relative line numbers
 set scrolloff=5                 " Lookahead while scrolling
 set smartcase                   " Override ignorecase option when pattern contains upper-case letters
 
