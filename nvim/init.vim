@@ -44,7 +44,7 @@ au BufRead,BufNewFile *.cmp setfiletype xml
 au BufRead,BufNewFile *.app setfiletype xml
 
 
-call plug#begin()
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
