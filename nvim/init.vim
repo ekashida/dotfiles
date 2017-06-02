@@ -67,6 +67,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_html_tidy_ignore_errors=['proprietary attribute']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = "node_modules/.bin/eslint" " Use the local eslint install since global eslint does not look at local eslint configs
 let g:syntastic_json_checkers = ['jsonlint']
