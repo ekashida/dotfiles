@@ -3,7 +3,6 @@ function install_from_github
   mkdir -p $repos_dir
   pushd $repos_dir
 
-  install_n
   install_z_fish
 
   popd

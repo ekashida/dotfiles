@@ -16,6 +16,7 @@ git clone git@github.com:ekashida/dotfiles.git
   - `brew install git`
   - `brew install tidy-html5`
   - `brew install vim`
+  - `brew install n`
 1. Install [neovim][]
   1. `brew tap neovim/neovim`
   1. `brew install --HEAD neovim`
