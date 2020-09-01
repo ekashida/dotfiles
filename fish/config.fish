@@ -24,10 +24,3 @@ begin
 
   source_localrc
 end
-
-begin
-  set z_fish_path ~/repos/z-fish/z.fish
-  if test -e $z_fish_path
-    source $z_fish_path
-  end
-end
