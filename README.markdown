@@ -14,7 +14,6 @@ git clone git@github.com:ekashida/dotfiles.git
   - `brew install ag`
   - `brew install fish`
   - `brew install git`
-  - `brew install tidy-html5`
   - `brew install neovim`
   - `brew install n`
 
