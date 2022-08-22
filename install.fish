@@ -17,8 +17,6 @@ ln -Fsv "$working_dir/nvim/init.vim"      "$nvim_config_dir/init.vim"
 ln -Fsv "$working_dir/screenrc"           "$HOME/.screenrc"
 ln -Fsv "$working_dir/gitconfig"          "$HOME/.gitconfig"
 
-install_from_github
-
 if not test -L $nvim_plugin_plug
   echo "Installing vim-plug to $nvim_plugin_plug"
   curl -fLo $nvim_plugin_plug --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
