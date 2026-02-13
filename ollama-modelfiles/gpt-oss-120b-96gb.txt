@@ -1,0 +1,2 @@
+FROM gpt-oss:120b
+PARAMETER num_ctx 8192
