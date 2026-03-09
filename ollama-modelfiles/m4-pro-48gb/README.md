@@ -19,14 +19,7 @@
 - **Context window (64K):** The model's light weight leaves ~24GB free, enough to support a larger KV cache. 64K takes advantage of this — useful for longer research conversations and document analysis. The model's native context is 128K, so 64K is well within its trained range.
 - **Limitation:** Weaker on multilingual tasks. For conversations in Japanese or tasks requiring Japanese language production, use Qwen3 32B instead.
 
-### qwen3:32b — Deep Research & Multilingual (Open WebUI)
-
-- **Use case:** Deeper research, complex multi-step analysis, and conversations involving Japanese or other non-English languages.
-- **Why this model:** Dense architecture (32.8B, all active) engages ~9x more parameters per token than GPT-OSS 20B, producing more coherent and thorough responses on complex questions. Better calibrated — more likely to express uncertainty than confidently hallucinate, which matters for research accuracy. Thinking mode lets you inspect the model's reasoning chain. Supports tool calling.
-- **Multilingual:** Strong CJK language support with 100+ languages. The go-to model for conversations in Japanese or any task requiring accurate non-English text production — GPT-OSS 20B is notably weak here.
-- **Context window (32K):** At ~20GB for weights, this is the heaviest model. 32K keeps total memory around ~26–28GB, leaving reasonable headroom. The model's native context is 40K, so 32K stays within the trained range without pushing memory limits.
-
 ## Runtime Tips
 
-- **KV cache quantization:** Set `OLLAMA_KV_CACHE_TYPE=q8_0` (requires `OLLAMA_FLASH_ATTENTION=1`) before starting Ollama to roughly halve KV cache memory with minimal quality loss. This allows pushing context windows higher if needed (e.g., qwen3-coder to 64K, gpt-oss to 128K). Note: for qwen3:32b, the freed memory is better used as general system headroom rather than doubling the context window — its native context is only 40K, and exceeding that relies on YaRN extrapolation which can degrade output quality.
+- **KV cache quantization:** Set `OLLAMA_KV_CACHE_TYPE=q8_0` (requires `OLLAMA_FLASH_ATTENTION=1`) before starting Ollama to roughly halve KV cache memory with minimal quality loss. This allows pushing context windows higher if needed (e.g., qwen3-coder to 64K, gpt-oss to 128K).
 - **Model swapping:** Ollama loads one model at a time and swaps on demand. Expect a few seconds of delay when switching between models.
