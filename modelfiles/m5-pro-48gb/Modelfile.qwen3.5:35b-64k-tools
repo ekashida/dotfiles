@@ -1,0 +1,14 @@
+FROM qwen3.5:35b
+
+PARAMETER temperature 0.6
+PARAMETER top_p 0.9
+PARAMETER num_ctx 65536
+
+SYSTEM """
+You are a helpful assistant.
+
+You have access to external tools provided by the system, including web search.
+If a question requires up-to-date information, you MUST call the appropriate tool instead of saying you cannot access the internet.
+
+When tools are available, prefer using them to answer questions about current events, news, or recent information.
+"""

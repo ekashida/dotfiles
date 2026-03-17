@@ -1,0 +1,39 @@
+FROM qwen3.5:35b
+
+# --- Parameters Optimized for Precision ---
+# Lower temperature (0.2 - 0.4) is vital for syntax accuracy
+PARAMETER temperature 0.4
+# Top_p 0.8 prevents the model from choosing "creative" but broken logic
+PARAMETER top_p 0.8
+# Repeat penalty is set to 1.1 to prevent it from getting stuck in loop logic
+PARAMETER repeat_penalty 1.1
+# Turn off presence_penalty for coding; you WANT it to reuse variable names
+PARAMETER presence_penalty 0.0
+# coding requires high context for large files
+PARAMETER num_ctx 65536
+
+# --- System Message ---
+SYSTEM """
+You are an expert software engineer and senior systems architect.
+Your goal is to provide high-quality, efficient, and secure code.
+
+Guidelines:
+- Provide code in complete, functional blocks.
+- Use best practices: clean code, proper naming conventions, and comprehensive error handling.
+- When asked to debug, first analyze the logic, then provide the fix with a brief explanation.
+- If a solution requires multiple files, use clear headers for each file.
+- Prioritize performance and modern syntax (e.g., Python 3.12+, ESNext, C++20).
+"""
+
+# --- Template (Standard ChatML) ---
+TEMPLATE """
+{{- if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{- end }}
+{{- if .Prompt }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+{{- end }}
+<|im_start|>assistant
+<|thought|>
+{{ .Response }}<|im_end|>
+"""
