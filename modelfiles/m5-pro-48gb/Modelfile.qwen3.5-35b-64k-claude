@@ -1,0 +1,54 @@
+FROM qwen3.5:35b
+
+# ─── Context & Batching ───────────────────────────────────────────────────────
+
+# 32k is a practical default for Claude Code. The MoE hybrid architecture means
+# KV cache overhead is minimal (~327MB at 32k with q8_0), so you can safely push
+# to 65536 (~655MB) if you need to load large files or long tool call chains.
+PARAMETER num_ctx 65536
+
+# Conservative but stable for a 23GB model running alongside qwen2.5-coder:7b.
+# Raise to 1024 if you want faster prompt ingestion and memory allows.
+PARAMETER num_batch 512
+
+# Physical performance cores on the M5 Pro. Leaves 2 free for the OS and
+# Ollama overhead to avoid thermal throttling during long agentic sessions.
+PARAMETER num_thread 12
+
+# ─── Thinking Mode ────────────────────────────────────────────────────────────
+
+# Thinking mode is disabled globally. Qwen3.5's <think>...</think> output blocks
+# can confuse Claude Code's tool call parser, causing malformed responses or
+# hangs. Disabling it globally prioritizes agentic reliability over reasoning
+# depth. To enable reasoning on a specific prompt, append /think to your message:
+#   "why is this recursive function blowing the stack /think"
+SYSTEM "/no_think"
+
+# ─── Sampling ─────────────────────────────────────────────────────────────────
+
+# Fully deterministic. Claude Code requires well-formed, reproducible tool call
+# XML/JSON — any entropy risks malformed responses that Claude Code misinterprets
+# as model errors.
+PARAMETER temperature 0.0
+
+# Nucleus sampling. At temperature 0.0 this has no practical effect, but kept
+# as a sane default if you experiment with higher temperatures.
+PARAMETER top_p 0.9
+
+# No repetition penalty — avoids penalizing legitimate re-use of variable names,
+# keywords, and structural patterns in generated code.
+PARAMETER repeat_penalty 1.0
+
+# ─── Stop Tokens ──────────────────────────────────────────────────────────────
+
+# Qwen3.5 uses ChatML-style delimiters — not Mistral [INST]/[/INST] tokens.
+# Do not mix these with your devstral Modelfiles.
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|endoftext|>"
+
+# ─── Template ─────────────────────────────────────────────────────────────────
+
+# No TEMPLATE block — Ollama's built-in Qwen3.5 template handles ChatML
+# formatting and thinking mode tags correctly. Overriding it risks breaking
+# the /think and /no_think per-prompt toggle.
