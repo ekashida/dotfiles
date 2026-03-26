@@ -1,0 +1,92 @@
+# ============================================================
+# Modelfile for devstral-small-2 — M5 Pro, 48GB, coding agent
+# Covers both Zed agent and Claude Code usage (single config)
+# Build: ollama create devstral-coder -f Modelfile
+# ============================================================
+
+# Devstral Small 2 — 24B dense params, 256K context, Q4_K_M.
+# Fits comfortably in ~14GB of unified memory on your 48GB M5 Pro.
+FROM devstral-small-2
+
+# ── Sampling parameters ─────────────────────────────────────
+
+# Mistral officially recommends 0.15 for Devstral 2 in agentic
+# use (lower than general chat models). Very low temperature
+# keeps tool calls and code edits deterministic. Slightly
+# raised to 0.2 here to avoid degenerate repetition on long
+# file outputs — still well within the deterministic range.
+PARAMETER temperature 0.2
+
+# top_p: nucleus sampling cutoff. 0.95 is Mistral's default
+# for this model family and works well at low temperature.
+PARAMETER top_p 0.95
+
+# top_k: candidate token pool at each step. 20 is Mistral's
+# recommended value for Devstral — intentionally tight to
+# reinforce deterministic code generation.
+PARAMETER top_k 20
+
+# Mild repetition penalty. Code legitimately repeats patterns
+# (variable names, loop constructs) so keep this low. 1.05
+# discourages only true pathological loops without interfering
+# with normal code structure.
+PARAMETER repeat_penalty 1.05
+
+# Disable presence penalty entirely — same reasoning as above.
+# Penalising token presence hurts identifier reuse in code.
+PARAMETER presence_penalty 0.0
+
+# ── Context window ──────────────────────────────────────────
+
+# Devstral Small 2 supports 256K context natively. With your
+# OLLAMA_KV_CACHE_TYPE=q8_0 and 48GB unified memory, 65536 is
+# a safe ceiling that accommodates large multi-file agent
+# sessions without memory pressure. The model fits in ~14GB,
+# leaving ~30GB headroom; q8_0 KV cache at 65536 tokens costs
+# roughly 8-10GB for a 24B dense model.
+# Raise to 131072 cautiously if you need full repo context,
+# but watch Activity Monitor for memory pressure warnings.
+PARAMETER num_ctx 32768
+
+# Batch size for prompt ingestion (prefill). 512 is the sweet
+# spot for Apple Silicon — large enough to parallelise long
+# prompt evaluation, conservative enough to avoid memory spikes
+# on the initial context load of a big codebase.
+PARAMETER num_batch 512
+
+# ── Hardware ────────────────────────────────────────────────
+
+# Force all layers onto the GPU via Metal. On Apple Silicon,
+# CPU and GPU share unified memory so there's no transfer
+# overhead — everything runs on-chip at full bandwidth.
+PARAMETER num_gpu 999
+
+# M5 Pro has 6 "super cores" (high single-thread) + 12 "performance cores"
+# (efficient multithreaded). 10 threads targets all super cores plus 4
+# performance cores, leaving headroom for Zed and the OS.
+PARAMETER num_thread 10
+
+# No cap on generated tokens — let the model complete full
+# file edits and multi-step tool call chains uninterrupted.
+PARAMETER num_predict -1
+
+# ── System prompt ───────────────────────────────────────────
+
+# Note: when using Claude Code via `ollama launch claude`,
+# Claude Code injects its own system prompt at runtime and
+# this SYSTEM block is effectively overridden. It still
+# applies for direct Zed agent usage and ollama run sessions.
+#
+# Derived from Mistral's recommended OpenHands-style prompt,
+# trimmed for general coding agent use without scaffold
+# assumptions.
+SYSTEM """You are Devstral, an expert software engineering assistant built by Mistral AI. You help users write, edit, debug, and reason about code.
+
+- You are thorough and methodical; prioritise correctness over speed.
+- When editing existing code, preserve the author's conventions and style.
+- If a request is ambiguous, ask for clarification before proceeding.
+- If the user asks a question (e.g. "why is X happening"), answer it directly — do not silently attempt a fix.
+- Prefer explicit, readable solutions. Briefly explain trade-offs when multiple approaches exist.
+- Always include necessary imports and handle errors appropriately.
+- For shell commands, prefer macOS/Unix idioms.
+- You can read images but cannot generate them."""
