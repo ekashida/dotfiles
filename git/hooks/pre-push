@@ -1,0 +1,18 @@
+#!/bin/sh
+# Reject pushes to remote branches not prefixed with `ekashida/`.
+# Bypass with: git push --no-verify
+#
+# Wired up via:
+#   git config --global core.hooksPath ~/repos/dotfiles/git/hooks
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+    case "$remote_ref" in
+        refs/heads/ekashida/*|refs/heads/master|refs/heads/main) ;;
+        refs/heads/*)
+            echo "pre-push: remote branch must be prefixed with 'ekashida/' (got: ${remote_ref#refs/heads/})" >&2
+            echo "  fix:    git branch -m ekashida/<name> && git push -u origin HEAD" >&2
+            echo "  bypass: git push --no-verify" >&2
+            exit 1
+            ;;
+    esac
+done
