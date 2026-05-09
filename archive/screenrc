@@ -1,8 +1,0 @@
-# Turn off the splash screen
-startup_message off
-
-# To enter scrollback hit C-a [
-defscrollback 30000
-
-# Display screen index at the bottom
-hardstatus alwayslastline '%{= kw}%{gray}%w'

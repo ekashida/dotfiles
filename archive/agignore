@@ -1,9 +1,0 @@
-*.java
-*.jpg
-*.svg
-*.pdf
-*.png
-.git/
-bin/
-build/
-java/
