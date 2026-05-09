@@ -1,0 +1,34 @@
+[user]
+  signingkey = ~/.ssh/id_ed25519_github_signing.pub
+	email = ekashida@gmail.com
+	name = Eugene Kashida
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  allowedSignersFile = ~/.ssh/allowed_signers
+
+[commit]
+  gpgsign = true
+
+[alias]
+  prune-squashed = "!f() { \
+      command -v gh >/dev/null 2>&1 || { echo 'gh CLI required: https://cli.github.com'; exit 1; }; \
+      git fetch origin --quiet --prune; \
+      current=$(git symbolic-ref --short HEAD 2>/dev/null); \
+      merged=$(gh pr list --state merged --limit 500 --json headRefName --jq '.[].headRefName'); \
+      branches=$(git for-each-ref --format='%(refname:short)' refs/heads/ \
+          | grep -vE '^(master|main)$' \
+          | grep -vxF \"$current\" \
+          | while IFS= read -r b; do echo \"$merged\" | grep -qxF \"$b\" && echo \"$b\"; done); \
+      if [ -z \"$branches\" ]; then echo 'Nothing to prune.'; exit 0; fi; \
+      echo \"$branches\"; \
+      if [ \"$1\" = '-n' ] || [ \"$1\" = '--dry-run' ]; then exit 0; fi; \
+      printf 'Force-delete these branches? [y/N] '; \
+      read ans; \
+      case \"$ans\" in y|Y|yes) echo \"$branches\" | xargs -n1 git branch -D ;; *) echo 'Aborted.' ;; esac; \
+  }; f"
+
+[core]
+	hooksPath = /Users/ekashida/repos/dotfiles/git/hooks
