@@ -31,4 +31,4 @@
   }; f"
 
 [core]
-	hooksPath = /Users/ekashida/repos/dotfiles/git/hooks
+	hooksPath = ~/repos/dotfiles/git/hooks
