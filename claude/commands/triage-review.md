@@ -25,8 +25,12 @@ Process concerns in order. The flow depends on the tag.
 
 ### real-bug and design-question — full ceremony
 
-1. **Explain** the issue. Required: cite the specific file and line(s), and trace the code path that triggers the issue (what calls into it, under what conditions). A concrete snippet, scenario, or analogy is welcome on top of the trace, but the trace is mandatory — it's what catches reviewer hallucinations. Avoid jargon unless you define it.
-2. **Discuss.** End your turn after step 1 and wait for my response. Do not propose a fix, start applying one, or move to step 3 in the same turn — even if the issue seems obvious or you've already decided how to fix it. Once I respond, engage with the substance — don't capitulate just because I disagree.
+1. **Explain** the issue. Two required parts:
+   - **Plain-language summary.** What's wrong, when it manifests, and who notices (user-visible symptom, silent data corruption, dev-only papercut, etc.). Avoid jargon unless you define it. This is what lets me judge severity and decide whether to defer.
+   - **Code-path trace.** Cite the specific file and line(s), and trace what calls into the affected code and under what conditions. This is what catches reviewer hallucinations — a concern that can't be traced is probably a misread.
+
+   A concrete snippet, scenario, or analogy on top of these is welcome.
+2. **Discuss.** End your turn after step 1 and wait for my response. Do not propose a fix, start applying one, or move to step 3 in the same turn — even if the issue seems obvious or you've already decided how to fix it. Once I respond, engage with the substance — don't capitulate just because I disagree. If I decide to **defer** the concern (real but not worth fixing now), note it and move to the next concern — skip steps 3–4.
 3. **Decide and fix.** Once I'm satisfied I understand the issue, propose a fix and iterate with me until I approve. Then apply it.
 4. **Verify the fix** (step 3.5). Immediately after applying the fix, spawn a fresh general-purpose subagent with the original concern text, the file(s) changed, and the diff. Ask it two questions: (a) does the change fully address the concern? (b) does the change introduce any new issues (regressions, broken invariants, missed call sites, lint/type problems)? The subagent must be fresh — do not reuse one that already saw the discussion, since we want an independent read. Report the subagent's findings in one short paragraph. If it surfaces problems, return to step 3 to iterate.
 5. **Move on** only after the current concern is resolved (fixed-and-verified, deferred, or dismissed).
