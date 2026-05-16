@@ -31,4 +31,7 @@
   }; f"
 
 [core]
-	hooksPath = ~/repos/dotfiles/git/hooks
+  hooksPath = ~/repos/dotfiles/git/hooks
+
+[include]
+  path = ~/repos/dotfiles/git/gitconfig.delta
