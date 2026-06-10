@@ -8,6 +8,9 @@
   navigate = true
   light = false
   line-numbers = true
+  commit-decoration-style = bold box ul
+  file-style = bold yellow
+  file-decoration-style = bold yellow ul
 
 [merge]
   conflictstyle = zdiff3
