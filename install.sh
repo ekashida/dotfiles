@@ -31,6 +31,10 @@ link "$DOTFILES/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 link "$DOTFILES/claude/agents"    "$HOME/.claude/agents"
 link "$DOTFILES/claude/commands"  "$HOME/.claude/commands"
 
+# Zsh
+link "$DOTFILES/zsh/zshrc"            "$HOME/.zshrc"
+link "$DOTFILES/zsh/zprofile"         "$HOME/.zprofile"
+
 # Git (gitconfig pulls in core.hooksPath itself)
 link "$DOTFILES/git/gitconfig"        "$HOME/.gitconfig"
 

@@ -1,0 +1,5 @@
+
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
+# 2026-06-10 added to $PATH after installing claude code
+export PATH="$HOME/.local/bin:$PATH"
