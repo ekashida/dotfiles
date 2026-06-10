@@ -1,5 +1,11 @@
+# Login shell config. All PATH/env mutations live here, after macOS's
+# /etc/zprofile runs path_helper, so these prepends stay at the front.
 
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
+# Volta (Node toolchain)
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 # 2026-06-10 added to $PATH after installing claude code
 export PATH="$HOME/.local/bin:$PATH"
