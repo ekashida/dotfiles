@@ -23,6 +23,19 @@ When asserting how a framework or tool behaves (Lit, Fastify, AI SDK, oxfmt, Sho
 - Before first-pushing a branch, if the local branch name isn't already prefixed with `ekashida/` (and isn't `master`/`main`), rename it: `git branch -m ekashida/<name>`. Push the renamed branch — don't push under one name and rewrite to another, since the local/remote mismatch confuses tooling.
 - A global `pre-push` hook (`~/repos/dotfiles/git/hooks/pre-push`) enforces the `ekashida/` prefix. If a push fails the hook, fix the branch name rather than bypassing — don't use `--no-verify` without asking.
 
+## Code comments
+
+Write comments for a reader who arrives at the line cold — no session history, no PR context, no memory of what just changed. If a comment only makes sense to someone who watched the change happen, rewrite it or delete it.
+
+Concretely, avoid:
+
+- References to the change itself ("now we also…", "this used to…", "added to fix…", "previously this returned X").
+- References to callers or callsites ("used by the chat flow", "called from the new onboarding path") — those rot the moment the calling code moves.
+- References to tickets, PRs, or incidents without enough standalone explanation to be useful if the link 404s.
+- Restating what the code obviously does. Comments should explain *why* — a non-obvious constraint, invariant, or gotcha — not narrate *what*.
+
+If the "why" is genuinely about history (a workaround for a specific bug, an intentional deviation from an API's documented behavior), state the underlying constraint directly so the comment stands on its own.
+
 ## Before declaring a change done
 
 Self-review against the original request:
