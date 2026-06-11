@@ -1,7 +1,7 @@
 [user]
   signingkey = ~/.ssh/id_ed25519_github_signing.pub
-	email = ekashida@gmail.com
-	name = Eugene Kashida
+  email = ekashida@gmail.com
+  name = Eugene Kashida
 
 [gpg]
   format = ssh
