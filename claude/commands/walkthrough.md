@@ -1,24 +1,25 @@
 ---
-description: Walk through a file (or symbol) section by section, pausing for questions and confirmation between each
+description: Walk through a file, symbol, directory, or diff section by section, pausing for questions and confirmation between each
+argument-hint: <path | path::symbol | dir/ | commit-ish or PR number>
 ---
 
-Walk through the file or symbol named in the argument, one section at a time, in dialog.
+Walk through the target named in the argument, one section at a time, in dialog.
 
 Argument forms:
 - `/walkthrough path/to/file.ts` — walk through the whole file.
 - `/walkthrough path/to/file.ts::symbolName` — walk through one function/class/type in that file (plus the imports and helpers it depends on).
-- `/walkthrough path/to/dir/` — treat the directory as a small module; walk through it file-by-file at the file level, then optionally drill into one of them.
+- `/walkthrough path/to/dir/` — treat the directory as a small module; sections are files. Quote each file's load-bearing parts (exports, signatures, the central function) rather than whole files. Offer to drill into one of them afterward.
 - `/walkthrough <commit-ish, range, or PR number>` — walk the diff as a series of logical changes.
 
-If the argument is missing or doesn't resolve to a file, directory, or diff, say so and stop.
+If the argument is missing or doesn't resolve to a file, directory, or diff, say so and stop. If it resolves to more than one of those (e.g. a number that is both a file and a PR), prefer the path and say which reading you chose. If the file in a `::symbol` form exists but the symbol doesn't, list the file's top-level symbols and stop.
 
 ## Diff targets
 
-When the target is a diff, sections are logical changes, not files or hunks — one conceptual change may span files, and one file may contain unrelated changes. Before explaining a hunk, read the surrounding code in the post-change file; the diff alone rarely shows the contracts the change participates in. Quote the resulting code (enough to read cold), noting briefly what it replaced — not raw `+`/`-` hunks. The "why it's shaped that way" step becomes "why this change, and why this shape rather than the alternatives."
+When the target is a diff, read the full diff first (`gh pr diff <number>` for PR numbers), and size the section count to the change rather than the number of files touched. Sections are logical changes, not files or hunks — one conceptual change may span files, and one file may contain unrelated changes. Before explaining a hunk, read the surrounding code in the post-change file; the diff alone rarely shows the contracts the change participates in. Quote the resulting code (enough to read cold), noting briefly what it replaced — not raw `+`/`-` hunks. The "why it's shaped that way" step becomes "why this change, and why this shape rather than the alternatives."
 
 ## Step 0 — Read the file and propose sections
 
-Before writing any walkthrough prose, read the target end-to-end. Then post a numbered list of the sections you plan to cover, with a one-line description each. Order sections so each one only depends on things already covered — usually data-flow or dependency order, not file order. Keep section count proportional to file size — 3 sections for a 50-line file, 5–8 for a typical file, more only when the file genuinely splits into more concerns. Group trivial setup (imports, constants used in one place) with the section that consumes it rather than giving it its own section.
+Before writing any walkthrough prose, read the target end-to-end. If the whole target fits comfortably in one section, this format is overkill — say so, explain it in one shot, and skip the rest of these steps. Otherwise post a numbered list of the sections you plan to cover, with a one-line description each. Order sections so each one only depends on things already covered — usually data-flow or dependency order, not file order. Keep section count proportional to file size — 3 sections for a 50-line file, 5–8 for a typical file, more only when the file genuinely splits into more concerns. Group trivial setup (imports, constants used in one place) with the section that consumes it rather than giving it its own section.
 
 End the turn after the section list. Wait for the user to confirm or renegotiate scope. They may:
 - Accept the list as-is.
@@ -61,4 +62,3 @@ After the closer, end the turn and ask if they have questions on any specific se
 - Don't restate what well-named code already says. If the section is just `function add(a, b) { return a + b; }`, you have nothing to add — say so and move on.
 - Don't propose changes to the code during the walkthrough unless the user asks. The skill is explanation, not refactoring. (If you spot a real bug, flag it briefly and note "worth a separate look" — but don't derail the walkthrough.)
 - Don't batch sections. One per turn, always.
-- If the file is small enough that the whole thing fits in one section, this skill is overkill — say so and just explain the file in one shot.
