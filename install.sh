@@ -38,7 +38,8 @@ link "$DOTFILES/zsh/zprofile"         "$HOME/.zprofile"
 # Git (gitconfig pulls in core.hooksPath itself)
 link "$DOTFILES/git/gitconfig"        "$HOME/.gitconfig"
 
-# SSH
+# SSH (ssh expects ~/.ssh to be 0700; link()'s bare mkdir would leave it 0755)
+mkdir -p -m 700 "$HOME/.ssh"
 link "$DOTFILES/ssh/config"           "$HOME/.ssh/config"
 
 echo "done."
