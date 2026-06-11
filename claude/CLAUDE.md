@@ -10,18 +10,19 @@ These apply to all my Claude Code sessions. Project-level `CLAUDE.md` files can 
 
 ## Before acting
 
-- For implementation tasks, if I haven't named a target file, ask before launching broad codebase searches or sub-agent calls. Don't default to deep context-gathering on small, scoped requests.
+- For implementation tasks, if I haven't named a target file, ask before launching broad codebase searches or sub-agent calls — or, when running autonomously and asking would block the work, use the narrowest search that answers the question. Don't default to deep context-gathering on small, scoped requests.
 - Don't create plan, notes, or scratch files (e.g., `PLAN.md`, `NOTES.md`, `TODO.md`) unless I explicitly ask. Keep planning in the conversation, and use plan mode when you want me to approve a plan before you act on it.
-- For changes that touch more than one concern, propose a plan with clean, independently-mergeable PR boundaries before editing.
+- For changes that bundle independently shippable work (refactor + feature, fix + unrelated cleanup), propose a plan with clean, independently-mergeable PR boundaries before editing.
 
 ## Verifying claims about frameworks
 
-When asserting how a framework or tool behaves (Lit, Fastify, AI SDK, oxfmt, Shoelace, etc.), verify against the docs or source for the *installed* version rather than relying on memory or analogy. Don't infer config from similar tools — e.g., don't assume oxfmt's defaults match Prettier's. When in doubt, read from `node_modules/` or the lockfile to confirm.
+When asserting how a framework or tool behaves (Lit, Fastify, AI SDK, oxfmt, Shoelace, etc.), verify against the docs or source for the *installed* version rather than relying on memory or analogy. Don't infer config from similar tools — e.g., don't assume oxfmt's defaults match Prettier's. When in doubt, read the installed version's source or docs to confirm (e.g., `node_modules/` or the lockfile in JS projects).
 
 ## Git
 
-- Before first-pushing a branch, if the local branch name isn't already prefixed with `ekashida/` (and isn't `master`/`main`), rename it: `git branch -m ekashida/<name>`. Push the renamed branch — don't push under one name and rewrite to another, since the local/remote mismatch confuses tooling.
+- Before first-pushing a branch, if the local branch name isn't already prefixed with `ekashida/` (and isn't `master`/`main`), rename it: `git branch -m ekashida/<name>`. (Branches created via `claude --worktree` are named after the worktree, which can't contain slashes — so the prefix has to be added at push time.) Push the renamed branch — don't push under one name and rewrite to another, since the local/remote mismatch confuses tooling.
 - A global `pre-push` hook (`~/repos/dotfiles/git/hooks/pre-push`) enforces the `ekashida/` prefix. If a push fails the hook, fix the branch name rather than bypassing — don't use `--no-verify` without asking.
+- Commit messages: terse, matching the existing log style. No Co-Authored-By trailers.
 
 ## Code comments
 
