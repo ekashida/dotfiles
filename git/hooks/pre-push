@@ -11,7 +11,6 @@ while read -r local_ref local_sha remote_ref remote_sha; do
         refs/heads/*)
             echo "pre-push: remote branch must be prefixed with 'ekashida/' (got: ${remote_ref#refs/heads/})" >&2
             echo "  fix:    git branch -m ekashida/<name> && git push -u origin HEAD" >&2
-            echo "  bypass: git push --no-verify" >&2
             exit 1
             ;;
     esac
