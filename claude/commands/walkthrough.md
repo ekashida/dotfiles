@@ -8,12 +8,17 @@ Argument forms:
 - `/walkthrough path/to/file.ts` — walk through the whole file.
 - `/walkthrough path/to/file.ts::symbolName` — walk through one function/class/type in that file (plus the imports and helpers it depends on).
 - `/walkthrough path/to/dir/` — treat the directory as a small module; walk through it file-by-file at the file level, then optionally drill into one of them.
+- `/walkthrough <commit-ish, range, or PR number>` — walk the diff as a series of logical changes.
 
-If the argument is missing or doesn't resolve to a file/directory, say so and stop.
+If the argument is missing or doesn't resolve to a file, directory, or diff, say so and stop.
+
+## Diff targets
+
+When the target is a diff, sections are logical changes, not files or hunks — one conceptual change may span files, and one file may contain unrelated changes. Before explaining a hunk, read the surrounding code in the post-change file; the diff alone rarely shows the contracts the change participates in. Quote the resulting code (enough to read cold), noting briefly what it replaced — not raw `+`/`-` hunks. The "why it's shaped that way" step becomes "why this change, and why this shape rather than the alternatives."
 
 ## Step 0 — Read the file and propose sections
 
-Before writing any walkthrough prose, read the target end-to-end. Then post a numbered list of the sections you plan to cover, with a one-line description each. Keep section count proportional to file size — 3 sections for a 50-line file, 5–8 for a typical file, more only when the file genuinely splits into more concerns. Group trivial setup (imports, constants used in one place) with the section that consumes it rather than giving it its own section.
+Before writing any walkthrough prose, read the target end-to-end. Then post a numbered list of the sections you plan to cover, with a one-line description each. Order sections so each one only depends on things already covered — usually data-flow or dependency order, not file order. Keep section count proportional to file size — 3 sections for a 50-line file, 5–8 for a typical file, more only when the file genuinely splits into more concerns. Group trivial setup (imports, constants used in one place) with the section that consumes it rather than giving it its own section.
 
 End the turn after the section list. Wait for the user to confirm or renegotiate scope. They may:
 - Accept the list as-is.
