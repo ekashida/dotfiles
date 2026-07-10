@@ -63,6 +63,8 @@ For TypeScript: don't infer from the diff — read the surrounding types. A type
 
 # Output format
 
+Your final message is the sole result returned to the caller — it is not shown to the user. Return the findings themselves, not a narration of your process.
+
 Produce a ranked list. For each finding:
 
 ```

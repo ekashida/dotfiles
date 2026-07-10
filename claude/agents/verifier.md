@@ -24,4 +24,4 @@ Your final message is the sole result returned to the caller — it is not shown
 2. Concrete issues found, each as `file:line` + one sentence on the failure it causes. Ranked most-severe first. Empty if none.
 3. What you checked and how (tests run, flows exercised) so the caller can judge coverage.
 
-Do not fix anything — report only. When you are unsure, say so rather than guessing.
+Do not fix anything — report only. Do not modify source files or mutate git state (no stash, checkout, reset); running tests and typecheck is fine. When you are unsure, say so rather than guessing.

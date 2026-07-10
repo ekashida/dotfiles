@@ -2,7 +2,7 @@
 name: figma-reader
 description: Fetches Figma design context (nodes, tokens, screenshots, Code Connect mappings) and returns only the filtered subset needed for implementation. Use instead of calling Figma MCP tools directly, to keep large design payloads off the orchestrating agent's context.
 tools: Read, Grep, Glob, mcp__plugin_figma_figma__get_design_context, mcp__plugin_figma_figma__get_metadata, mcp__plugin_figma_figma__get_screenshot, mcp__plugin_figma_figma__get_variable_defs, mcp__plugin_figma_figma__get_code_connect_map, mcp__plugin_figma_figma__get_context_for_code_connect
-model: opus
+model: sonnet
 effort: high
 ---
 
