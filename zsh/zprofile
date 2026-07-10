@@ -9,3 +9,7 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 # 2026-06-10 added to $PATH after installing claude code
 export PATH="$HOME/.local/bin:$PATH"
+
+# 2026-06-16 pin gcloud's Python (gcloud 573+ dropped 3.9). Guarded so removing/
+# upgrading python@3.13 falls back to gcloud's own probe, not a missing binary.
+[[ -x /opt/homebrew/opt/python@3.13/bin/python3.13 ]] && export CLOUDSDK_PYTHON=/opt/homebrew/opt/python@3.13/bin/python3.13
