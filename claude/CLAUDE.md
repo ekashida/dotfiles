@@ -25,6 +25,10 @@ When asserting how a framework or tool behaves (Lit, Fastify, AI SDK, oxfmt, Sho
 - Commit messages: terse, matching the existing log style. No Co-Authored-By trailers.
 - No AI attribution in PR descriptions either — no "Generated with Claude Code" footers or session links. Using Claude is implicit; attribution only adds noise.
 
+## Figma
+
+- Route Figma reads (`get_design_context`, `get_metadata`, `get_screenshot`, `get_variable_defs`, `get_code_connect_map`) through the `figma-reader` subagent instead of calling them directly or via a skill that fetches inline (e.g. `figma-design-to-code`'s own `get_design_context` call). MCP tool results stay in context for the rest of the session, so an inline fetch is much more expensive than one filtered through a subagent. Pass the filtered summary it returns into whatever design-to-code or Code Connect workflow needs it, rather than letting that workflow fetch for itself.
+
 ## Code comments
 
 Write comments for a reader who arrives at the line cold — no session history, no PR context, no memory of what just changed. If a comment only makes sense to someone who watched the change happen, rewrite it or delete it.
