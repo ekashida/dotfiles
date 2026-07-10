@@ -23,6 +23,7 @@ When asserting how a framework or tool behaves (Lit, Fastify, AI SDK, oxfmt, Sho
 - Before first-pushing a branch, if the local branch name isn't already prefixed with `ekashida/` (and isn't `master`/`main`), rename it: `git branch -m ekashida/<name>`. (Branches created via `claude --worktree` are named after the worktree, which can't contain slashes — so the prefix has to be added at push time.) Push the renamed branch — don't push under one name and rewrite to another, since the local/remote mismatch confuses tooling.
 - A global `pre-push` hook (`~/repos/dotfiles/git/hooks/pre-push`) enforces the `ekashida/` prefix. If a push fails the hook, fix the branch name rather than bypassing — don't use `--no-verify` without asking.
 - Commit messages: terse, matching the existing log style. No Co-Authored-By trailers.
+- No AI attribution in PR descriptions either — no "Generated with Claude Code" footers or session links. Using Claude is implicit; attribution only adds noise.
 
 ## Code comments
 
