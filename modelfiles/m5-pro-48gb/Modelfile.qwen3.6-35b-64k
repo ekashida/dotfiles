@@ -1,0 +1,85 @@
+# ============================================================
+# Modelfile for qwen3.6:35b (Qwen3.6-35B-A3B)
+# M5 Pro, 48GB unified memory — coding agent (Claude Code / Zed)
+# Pull first: ollama pull qwen3.6:35b   (~24GB download)
+# Build: ollama create qwen3.6-coder-64k -f Modelfile.qwen3.6-35b-64k
+# ============================================================
+
+# Qwen3.6-35B-A3B — 35B-total MoE with ~3B active params per
+# token (8 routed + 1 shared of 256 experts), 262K native
+# context. The low active-param count makes generation several
+# times faster than a dense 24B at comparable agentic quality
+# (Qwen reports 73.4% SWE-bench Verified, on their own agent
+# scaffold). An MLX-optimized tag (qwen3.6:35b-mlx) also
+# exists if the GGUF path underperforms.
+FROM qwen3.6:35b
+
+# ── Sampling parameters ─────────────────────────────────────
+
+# Qwen's published preset for "thinking mode, precise coding":
+# temperature 0.6, top_p 0.95, top_k 20, min_p 0.0,
+# presence_penalty 0.0. The model thinks by default and Qwen
+# advises against greedy decoding (repetition loops), so do
+# not drop temperature to 0 for determinism.
+PARAMETER temperature 0.6
+PARAMETER top_p 0.95
+PARAMETER top_k 20
+PARAMETER min_p 0.0
+PARAMETER presence_penalty 0.0
+
+# Ollama's default repeat_penalty is 1.1; Qwen's coding preset
+# uses no repetition penalties, and penalising repeats hurts
+# legitimate identifier reuse in code. Pin to neutral.
+PARAMETER repeat_penalty 1.0
+
+# ── Context window ──────────────────────────────────────────
+
+# KV cache is unusually cheap here: only 10 of the 40 blocks
+# use standard attention (2 KV heads × 256 dim); the other 30
+# are Gated DeltaNet linear-attention layers with constant-size
+# state. That's ~20KB/token at f16, halved again by the global
+# OLLAMA_KV_CACHE_TYPE=q8_0 (set in
+# ~/Library/LaunchAgents/setenv.ollama.plist) — well under 1GB
+# at 65536 tokens, ~25GB total load against the ~36GB Metal
+# wired limit (~75% of RAM on 48GB). Verify with `ollama ps`.
+#
+# 65536 matches the devstral-coder-64k build for a fair A/B.
+# Unlike devstral, raising this is nearly free memory-wise —
+# even the native 262144 costs only a few GB of cache — though
+# prompt-processing time grows with what you actually fill.
+#
+# Note: agent integrations talk to Ollama's OpenAI-compatible
+# endpoint, which ignores per-request num_ctx — this baked-in
+# value is the only per-model context knob for that path.
+PARAMETER num_ctx 65536
+
+# ── Hardware ────────────────────────────────────────────────
+
+# Force all layers onto the GPU via Metal — unified memory,
+# no transfer overhead.
+PARAMETER num_gpu 999
+
+# num_thread is intentionally unset: with all layers on the
+# GPU, CPU thread count only affects fallback paths, and
+# Ollama's default already matches the core inventory.
+
+# No cap on generated tokens — let the model complete full
+# file edits and multi-step tool call chains uninterrupted.
+PARAMETER num_predict -1
+
+# ── Thinking mode ───────────────────────────────────────────
+
+# The model reasons in <think> blocks by default; Ollama's
+# built-in Qwen3.6 template parses these natively, and the
+# model's "thinking preservation" is designed for agent loops,
+# so thinking is left ON (unlike the old Qwen3.5 config, which
+# had to disable it). Toggle per session if latency matters:
+# `/set nothink` in the REPL, or `"think": false` via the API.
+#
+# No TEMPLATE or stop-token overrides — Ollama's built-in
+# template handles ChatML delimiters and think-tag parsing;
+# overriding it risks breaking both.
+#
+# No SYSTEM block — Claude Code and Zed inject their own
+# system prompts at runtime, and the base model behaves fine
+# without one in `ollama run`.
