@@ -1,7 +1,7 @@
 # ============================================================
 # Modelfile for devstral-small-2:24b-instruct-2512-q8_0
 # M5 Pro, 48GB unified memory — coding agent (Claude Code / Zed)
-# Build: ollama create devstral-coder -f Modelfile.devstral
+# Build: ollama create devstral-coder-64k -f Modelfile.devstral-small-2-24b-64k
 # ============================================================
 
 # Devstral Small 2 — 24B dense params, 384K context, Q8_0.
@@ -41,16 +41,22 @@ PARAMETER presence_penalty 0.0
 
 # ── Context window ──────────────────────────────────────────
 
-# Devstral Small 2 supports 384K context natively. With 26GB
-# for the Q8 model and ~22GB headroom, 65536 tokens is the
-# safe default — covers large multi-file agent sessions
-# comfortably. KV cache at 65536 tokens costs roughly 8-10GB
-# for a dense 24B model, keeping total usage well under 40GB.
+# Devstral Small 2 supports 384K context natively. The KV
+# cache is quantized to q8_0 globally via OLLAMA_KV_CACHE_TYPE
+# (set in ~/Library/LaunchAgents/setenv.ollama.plist, together
+# with the OLLAMA_FLASH_ATTENTION=1 that KV quantization
+# requires), so 65536 tokens of cache costs ~5GB. Total load
+# is ~30GB (check with `ollama ps`), clearing macOS's default
+# Metal wired limit (~75% of RAM = ~36GB on 48GB) with ~6GB
+# to spare.
 #
-# You can raise to 131072 for full-repo context if needed —
-# watch Activity Monitor for memory pressure. Do not attempt
-# 256K+ without setting OLLAMA_KV_CACHE_TYPE=q8_0 first to
-# compress the KV cache.
+# 131072 would land around ~35GB — right at the Metal limit.
+# For repo-scale context, prefer a model with cheaper KV
+# (e.g. a small-active-param MoE) over pushing this one.
+#
+# Note: agent integrations talk to Ollama's OpenAI-compatible
+# endpoint, which ignores per-request num_ctx — this baked-in
+# value is the only per-model context knob for that path.
 PARAMETER num_ctx 65536
 
 # Batch size for prompt ingestion (prefill). 512 is the sweet
@@ -66,11 +72,9 @@ PARAMETER num_batch 512
 # overhead — everything runs on-chip at full M5 Pro bandwidth.
 PARAMETER num_gpu 999
 
-# M5 Pro: 8 performance cores + 4 efficiency cores (12 total).
-# 10 threads targets all performance cores plus 2 efficiency
-# cores, leaving headroom for Zed, Claude Code, and the OS.
-# Lower to 8 if you notice thermal throttling under sustained load.
-PARAMETER num_thread 10
+# num_thread is intentionally unset: with all layers on the
+# GPU, CPU thread count only affects fallback paths, and
+# Ollama's default already matches the core inventory.
 
 # No cap on generated tokens — let the model complete full
 # file edits and multi-step tool call chains uninterrupted.
