@@ -1,0 +1,64 @@
+# ============================================================
+# Modelfile for Qwen3.6-35B-A3B (Unsloth UD-Q6_K_XL)
+# M5 Pro, 48GB unified memory — primary agentic coding driver
+# Pull first: ollama pull hf.co/unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q6_K_XL   (~29GB)
+# Build: ollama create qwen3.6-coder -f Modelfile.qwen3.6-35b-a3b-q6-128k
+# ============================================================
+
+# Qwen3.6-35B-A3B — 35B-total MoE with ~3B active params per
+# token (8 routed + 1 shared of 256 experts), 262K native
+# context. Decode reads only the active ~3B params, so on the
+# M5 Pro's 307GB/s bandwidth it generates 4-6x faster than a
+# dense 27B — measured 736 vs 113 tok/s prefill at a 40k agent
+# prompt on this hardware class. Dense 27B models score higher
+# on quality but are too slow for an agentic loop here.
+#
+# Q6 rather than Q4: edit-format compliance (the thing agent
+# loops die on) measurably degrades before task pass-rate as
+# quants shrink, and the best published ≤48GB agentic result
+# (Terminal-Bench 2.0 37.8% on an M4 Pro 48GB, rivalling
+# Claude Code + Sonnet 4.5) used exactly this UD-Q6_K_XL quant
+# at 128K context with q8_0 KV cache.
+#
+# Speed fallback if Q6 feels sluggish: qwen3.6:35b-a3b-nvfp4
+# (~22GB, 4-bit, Ollama MLX path) — same sampling params apply.
+FROM hf.co/unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q6_K_XL
+
+# ── Sampling parameters ─────────────────────────────────────
+
+# Qwen's published preset for "thinking mode, precise coding":
+# temperature 0.6, top_p 0.95, top_k 20, min_p 0.0,
+# presence_penalty 0.0. The model thinks by default and Qwen
+# advises against greedy decoding (repetition loops), so do
+# not drop temperature to 0 for determinism.
+PARAMETER temperature 0.6
+PARAMETER top_p 0.95
+PARAMETER top_k 20
+PARAMETER min_p 0.0
+PARAMETER presence_penalty 0.0
+
+# Ollama's default repeat_penalty is 1.1; Qwen's coding preset
+# uses no repetition penalties, and penalising repeats hurts
+# legitimate identifier reuse in code. Pin to neutral.
+PARAMETER repeat_penalty 1.0
+
+# ── Context window ──────────────────────────────────────────
+
+# KV cache is unusually cheap here: only 10 of the 40 blocks
+# use standard attention (2 KV heads × 256 dim); the other 30
+# are Gated DeltaNet linear-attention layers with constant-size
+# state — ~2.7GB at 128K tokens even at f16, halved by the
+# global OLLAMA_KV_CACHE_TYPE=q8_0 (set in
+# ~/Library/LaunchAgents/setenv.ollama.plist). Total load is
+# ~31GB; that EXCEEDS macOS's default Metal wired limit (~75%
+# of RAM = ~36GB on 48GB) once context fills, so raise it
+# first: sudo sysctl iogpu.wired_limit_mb=45056 (re-run after
+# every reboot). Verify actual load with `ollama ps`.
+#
+# 131072 is the proven agentic sweet spot for this model; the
+# native 262144 works but prompt-processing time grows with
+# what you actually fill.
+#
+# CAUTION: a client-sent num_ctx silently overrides this value.
+# Check what your harness sends before trusting long sessions.
+PARAMETER num_ctx 131072
