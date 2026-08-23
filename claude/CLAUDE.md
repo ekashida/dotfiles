@@ -30,6 +30,14 @@ When asserting how a framework or tool behaves (Lit, Fastify, AI SDK, oxfmt, Sho
 Before editing anything in `~/.claude/agents/`, read the `README.md` there — it documents
 verified (but undocumented) harness behavior around model resolution and how to re-verify it.
 
+## Delegating context-heavy reads
+
+Reading a file into context is one-way — it never leaves, even if only one detail from it was needed. Before reading multiple files or doing open-ended exploration/search yourself:
+
+- If you don't need the raw file contents afterward, only a conclusion, delegate to a `fork` (research/analysis you don't need to re-derive) or `general-purpose` subagent (self-contained mechanical search) instead of `Read`-ing directly.
+- Skip delegation for a single targeted read you already know you'll act on directly (e.g., you're about to edit that file), or a trivial one-grep/one-read lookup — the delegation overhead isn't worth it there.
+- This mirrors the Figma rule below: push bulk/exploratory reads through a subagent so only the filtered answer lands in the main context.
+
 ## Figma
 
 - Route Figma reads (`get_design_context`, `get_metadata`, `get_screenshot`, `get_variable_defs`, `get_code_connect_map`) through the `figma-reader` subagent instead of calling them directly or via a skill that fetches inline (e.g. `figma-design-to-code`'s own `get_design_context` call). MCP tool results stay in context for the rest of the session, so an inline fetch is much more expensive than one filtered through a subagent. Pass the filtered summary it returns into whatever design-to-code or Code Connect workflow needs it, rather than letting that workflow fetch for itself.
