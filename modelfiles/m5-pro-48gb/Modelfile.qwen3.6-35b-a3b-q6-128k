@@ -35,7 +35,16 @@ PARAMETER temperature 0.6
 PARAMETER top_p 0.95
 PARAMETER top_k 20
 PARAMETER min_p 0.0
-PARAMETER presence_penalty 0.0
+
+# Deviates from that preset, which sets 0.0. This model can fall
+# into circular reasoning — repeating the same thoughts verbatim
+# instead of committing to a tool call — and Qwen's model card
+# names presence_penalty (range 0-2) as the control for endless
+# repetitions; its other two published presets ship 1.5. Qwen
+# warns high values can cause occasional language mixing and
+# slightly weaker output, so drop toward 1.0 if that appears.
+# Mirrors --presence-penalty in llama-server-qwen3.6-coder.sh.
+PARAMETER presence_penalty 1.5
 
 # Ollama's default repeat_penalty is 1.1; Qwen's coding preset
 # uses no repetition penalties, and penalising repeats hurts
