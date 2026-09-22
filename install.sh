@@ -26,10 +26,44 @@ link() {
     echo "link:    $dst -> $src"
 }
 
+# Add a command hook to ~/.claude/settings.json unless one already runs a
+# script with the same path suffix. settings.json is merged, not linked,
+# because Claude Code rewrites it on /model, /config, etc.
+claude_hook() {
+    local event="$1" script="$2"
+    local settings="$HOME/.claude/settings.json"
+
+    if ! command -v jq >/dev/null; then
+        echo "skip:    $event hook $script (jq not installed)"
+        return
+    fi
+
+    mkdir -p "$(dirname "$settings")"
+    [ -e "$settings" ] || echo '{}' > "$settings"
+
+    local suffix="${script#"$DOTFILES"}"
+    if jq -e --arg ev "$event" --arg sfx "$suffix" \
+        '[.hooks[$ev][]?.hooks[]?.command | select(endswith($sfx))] | length > 0' \
+        "$settings" >/dev/null; then
+        echo "ok:      $event hook $script"
+        return
+    fi
+
+    local tmp
+    tmp="$(mktemp)"
+    jq --arg ev "$event" --arg cmd "$script" \
+        '.hooks[$ev] = ((.hooks[$ev] // []) + [{hooks: [{type: "command", command: $cmd}]}])' \
+        "$settings" > "$tmp"
+    cat "$tmp" > "$settings"   # keeps the file's permissions, unlike mv from mktemp
+    rm "$tmp"
+    echo "hook:    $event -> $script"
+}
+
 # Claude Code config
 link "$DOTFILES/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 link "$DOTFILES/claude/agents"    "$HOME/.claude/agents"
 link "$DOTFILES/claude/commands"  "$HOME/.claude/commands"
+claude_hook SessionStart "$DOTFILES/claude/hooks/trebellar-context.sh"
 
 # Zsh
 link "$DOTFILES/zsh/zshrc"            "$HOME/.zshrc"
