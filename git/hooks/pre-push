@@ -1,9 +1,21 @@
 #!/bin/sh
 # Reject pushes to remote branches not prefixed with `ekashida/`.
+# On trebellar remotes, newly created branches must also carry a Linear
+# issue ID (`ekashida/<type>/prd-123-slug`) so Linear links the PR.
+# Branches that already exist on the remote are exempt.
 # Bypass with: git push --no-verify
 #
 # Wired up via:
 #   git config --global core.hooksPath ~/repos/dotfiles/git/hooks
+
+remote_url="$2"
+
+is_zero_sha() {
+    case "$1" in
+        *[!0]*) return 1 ;;
+        *) return 0 ;;
+    esac
+}
 
 while read -r local_ref local_sha remote_ref remote_sha; do
     case "$remote_ref" in
@@ -14,4 +26,17 @@ while read -r local_ref local_sha remote_ref remote_sha; do
             exit 1
             ;;
     esac
+
+    case "$remote_ref" in refs/heads/ekashida/*) ;; *) continue ;; esac
+    case "$remote_url" in *github.com[:/]trebellar/*) ;; *) continue ;; esac
+    is_zero_sha "$local_sha" && continue   # deleting a branch
+    is_zero_sha "$remote_sha" || continue  # branch already exists on the remote
+
+    branch="${remote_ref#refs/heads/}"
+    if ! printf '%s\n' "$branch" | grep -Eiq '^ekashida/[a-z]+/(prd|gtm)-[0-9]+(-|$)'; then
+        echo "pre-push: new trebellar branches must include a Linear issue ID (got: $branch)" >&2
+        echo "  format: ekashida/<feat|fix|chore>/<issue-id>-<slug>" >&2
+        echo "  fix:    git branch -m ekashida/fix/prd-123-short-slug && git push -u origin HEAD" >&2
+        exit 1
+    fi
 done
