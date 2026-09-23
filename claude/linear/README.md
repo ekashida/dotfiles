@@ -1,0 +1,70 @@
+# Linear workflow (Trebellar)
+
+How my Trebellar work stays visible in Linear. The goal: anyone at Trebellar, including a PM,
+can see from Linear what I'm working on, and issues close roughly daily.
+
+## Pieces
+
+| Piece | Where | What it does |
+|---|---|---|
+| Rules | `rules.md` (this dir) | What Claude follows in Trebellar sessions: when to create an issue, how to write it, which properties to set, when to move it to In Progress. |
+| Rules loader | `../hooks/trebellar-context.sh`, registered by `install.sh` | SessionStart hook that prints `rules.md` into the session when the repo's `origin` is under `github.com/trebellar/`. Stays silent everywhere else. |
+| Branch-name guard | `../../git/hooks/pre-push` | Rejects a push of a new branch to a trebellar remote unless the name has a `prd-`/`gtm-` issue ID, which is what links the PR to the issue. |
+| Git automations | Linear → Product team settings → Issue statuses & automations | Moves a linked issue to In Review when its PR opens and to Done when it merges. **Lives only in the Linear UI; configured per team.** |
+| Reconciler | `reconcile.sh` (this dir) | Daily backstop: applies missed forward moves and reports issues that need a decision. |
+| Daily summary | `~/daily-summaries/bin/summarize-sessions.sh`, run by launchd (`~/Library/LaunchAgents/com.ekashida.daily-session-summary.plist`) at 9:07 | Summarizes the last 24h of Claude sessions, then runs `reconcile.sh`, which appends a `## Linear` section to the day's file. **Not in this repo.** |
+
+## Who moves each status
+
+| Transition | Owner |
+|---|---|
+| → Queued / Backlog | Set when the issue is created (rules) |
+| → In Progress | Claude, when implementation starts (rules); the reconciler catches misses from local branches |
+| → In Review, → Done | Linear git automations; the reconciler catches missed webhooks |
+| → Deployed | Manual. Automating it needs a reliable "what's in prod" signal: the app release in Cloud Deploy, and the worker, which ships separately through `trebellar/workflows`. |
+
+Moves only go forward. Nothing here moves an issue backwards.
+
+## Linking
+
+Linear links a PR to an issue when the issue ID is in the branch name (`ekashida/fix/prd-813-…`
+works), or when a magic word precedes the ID in the PR title or body. A closing word (`Fixes
+PRD-123`) makes the merge close the issue. A contributing word (`Part of PRD-123`) links the PR
+without closing the issue.
+
+## Reconciler
+
+Scope: my assigned issues in Backlog, Queued, In Progress or In Review, plus my trebellar PRs
+updated in the last 7 days and local branches in `~/repos/frontend`.
+
+Applies (team Product only):
+- **Done**: every linked PR is closing and merged, and the description has no unchecked boxes.
+- **In Review**: an open, non-draft linked PR.
+- **In Progress**: Backlog or Queued with a recent local branch or a draft PR, and no open or merged PR.
+
+Reports, without changing anything:
+- Merged work with unchecked boxes.
+- Issues whose merged PRs include contributing or hand-attached ones.
+- In Progress or In Review issues idle for 3+ days.
+- New PRs with no issue.
+- Non-Product issues that would qualify for a move.
+
+It runs `claude -p --model opus` with only the Linear list, get and save tools allowed. Its errors
+go to `.launchd.err.log` next to the summary file.
+
+Dry run (no Linear writes; prints to the given file):
+
+```sh
+echo '# test' > /tmp/out.md
+LINEAR_DRY_RUN=1 ~/repos/dotfiles/claude/linear/reconcile.sh /tmp/out.md && cat /tmp/out.md
+```
+
+Backfilled summaries (`summarize-sessions.sh N` with N > 0) skip reconciliation, because it
+acts on current state.
+
+## When something doesn't move
+
+1. Check that the issue has the PR attached in Linear. If not, the branch name or magic word
+   didn't match.
+2. Check the team's git automations in Linear settings.
+3. Check the day's summary: the reconciler lists what it moved or flagged.

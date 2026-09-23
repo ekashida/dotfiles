@@ -6,6 +6,6 @@
 origin=$(git -C "${CLAUDE_PROJECT_DIR:-.}" remote get-url origin 2>/dev/null) || exit 0
 
 case "$origin" in
-    *github.com[:/]trebellar/*) cat "$(dirname "$0")/../linear.md" ;;
+    *github.com[:/]trebellar/*) cat "$(dirname "$0")/../linear/rules.md" ;;
 esac
 exit 0
