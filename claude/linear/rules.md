@@ -23,7 +23,7 @@ Applies in repos whose `origin` is under `github.com/trebellar/`. Goal: anyone a
 
 A Frontend feature needing a new core-service endpoint is two issues: the Frontend one (mine, Queued) blocked by a Backend one (unassigned, Triage).
 
-**Status.** When implementation starts on an issue that's Backlog or Queued, move it to In Progress — no approval needed. Skip this when the issue is created alongside an already-finished PR; the PR-open automation moves it. Never move an issue backwards. In Review and Done are Linear's job (the Product team's git automations), Deployed is manual. A daily job (`reconcile.sh` next to this file, run by the daily session summary) backstops missed moves and reports stale issues.
+**Status.** When implementation starts on an issue that's Backlog or Queued, move it to In Progress — no approval needed. Skip this when the issue is created alongside an already-finished PR; the PR-open automation moves it. Never move an issue backwards. In Review and Done are Linear's job (the Product team's git automations), Deployed is manual.
 
 **Workspace facts** (as of Sept 2026 — if a write is rejected, re-check the workspace rather than retrying):
 - Product statuses: Triage → Backlog → Queued → In Progress → In Review → Done → Deployed. A PR links to an issue when its branch name contains the issue ID (`ekashida/fix/prd-813-…` works); on a linked PR, the Product team's git automations (Team settings → Issue statuses & automations) move the issue to In Review on open and Done on merge.
