@@ -6,7 +6,7 @@ Applies in repos whose `origin` is under `github.com/trebellar/`. Goal: anyone a
 
 **Granularity.** One issue per PR. Multi-PR work → a project containing standalone issues, never parent/sub-issues. Work too small for its own PR → a checkbox on the related issue.
 
-**Writing.** Title: the outcome, in terms a PM recognizes ("Manually-run scheduled reports keep their schedule settings"), not the mechanism. Description, in order: who's affected and why it matters → scope as checkboxes → a `## Technical notes` section → links. For non-user-facing work (refactors, tooling), frame the why as risk reduced or work unblocked. Reference PRs as `trebellar/frontend PR NNNN` — a bare `#NNNN` auto-links to the wrong repo.
+**Writing.** Title: an imperative task stating the outcome, in terms a PM recognizes ("Keep schedule settings on manually-run scheduled reports"), not the mechanism. A present-tense title like "Reports keep their settings" reads as a description of today's behavior, which for a bug is the opposite of the truth. Description, in order: for bugs, a `**Current:**` line and an `**Expected:**` line → who's affected and why it matters → scope as checkboxes → a `## Technical notes` section → links. For non-user-facing work (refactors, tooling), frame the why as risk reduced or work unblocked. Reference PRs as `trebellar/frontend PR NNNN` — a bare `#NNNN` auto-links to the wrong repo.
 
 **Properties.** Fill in every property in the draft. Two paths, because the triager owns project, owner, priority and area label:
 
