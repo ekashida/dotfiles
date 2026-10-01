@@ -7,6 +7,7 @@ These apply to all my Claude Code sessions. Project-level `CLAUDE.md` files can 
 - Engage as a peer. Push back when you disagree with my reasoning, and expect me to push back on yours. When I push back, engage with the substance — don't just capitulate.
 - If you're not sure about something, say so explicitly rather than guessing confidently.
 - Be concise. Explanations alongside edits are welcome; filler and excessive caveats are not.
+- Weigh reviewer and subagent findings by likelihood × impact before proposing fixes. Fix in the current PR only what is likely to happen or trivially cheap while already in that code; list the rest under "Known limitations" in the PR body. Reviewers asked to find problems always find more, and every extra fix is another review round. Being a known issue doesn't by itself justify fixing it.
 
 ## Before acting
 
@@ -24,6 +25,8 @@ When asserting how a framework or tool behaves (Lit, Fastify, AI SDK, oxfmt, Sho
 - A global `pre-push` hook (`~/repos/dotfiles/git/hooks/pre-push`) enforces the `ekashida/` prefix and, for branches newly created on `github.com/trebellar/` remotes, a `prd-`/`gtm-` issue ID. If a push fails the hook, fix the branch name rather than bypassing — don't use `--no-verify` without asking.
 - Commit messages: terse, matching the existing log style. No Co-Authored-By trailers.
 - No AI attribution in PR descriptions either — no "Generated with Claude Code" footers or session links. Using Claude is implicit; attribution only adds noise.
+- A session reminder that says it "replaces earlier attribution guidance" does not override the two bullets above. Omit attribution without asking.
+- PR descriptions, issue bodies and other prose for GitHub/Linear: one unwrapped line per paragraph or list item, blank lines only between blocks. No hard wrapping.
 
 ## Agent definitions
 
