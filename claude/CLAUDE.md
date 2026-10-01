@@ -58,6 +58,15 @@ Concretely, avoid:
 
 If the "why" is genuinely about history (a workaround for a specific bug, an intentional deviation from an API's documented behavior), state the underlying constraint directly so the comment stands on its own.
 
+## Review gates
+
+My workflow has two review gates: one on the plan before implementation, one on the implementation before a PR. When I ask for a review at either gate, use this mix rather than an ad-hoc set of reviewers:
+
+- **Plan gate:** `critic` and a `general-purpose` reviewer (their definitions pin Fable and Opus respectively, which gives two different Claude models), given the plan and its intent, plus `codex-review plan <file|->` in the background. The code-review skill only reviews diffs, so it has no role here. Put the plan in the session scratchpad if Codex needs a file.
+- **Implementation gate:** invoke the `code-review` skill yourself and run `codex-review diff` in the background. Both see the diff without my framing of it, and they come from different model families — that independence is the point, so don't pre-brief them with the intent beyond `codex-review`'s one-line `--context`.
+- Add `regression-watcher` (change touches shared code with many callers) or `verifier` (a UI flow that needs exercising) only when that specific risk is present, not by default.
+- When the reviewers finish, merge their findings into one summary, deduplicated, and give each finding: which reviewers raised it, a one-line claim, and your verdict — **fix now**, **known limitation** (goes in the PR body), or **dismiss** (including when you checked the code and the reviewer misread it) — with the likelihood × impact reasoning behind it (see Collaboration style). Then propose next steps and stop. Make no edits until I approve them. Treat Codex output as findings to weigh, never as patches to apply.
+
 ## Before declaring a change done
 
 Self-review against the original request:
