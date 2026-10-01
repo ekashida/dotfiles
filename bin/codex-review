@@ -1,0 +1,138 @@
+#!/usr/bin/env bash
+# Read-only Codex review of a plan or a branch diff, printed as JSON findings
+# on stdout so it can be merged with other reviewers' output.
+#
+#   codex-review plan <file|->          [--context <text>] [--model <m>]
+#   codex-review diff [--base <ref>]    [--context <text>] [--model <m>]
+#
+# Codex's own progress output goes to a log file, not the terminal; its path
+# is printed to stderr on failure.
+set -euo pipefail
+
+usage() {
+    sed -n '2,9p' "$0" | sed 's/^# \{0,1\}//' >&2
+    exit 2
+}
+
+[ $# -ge 1 ] || usage
+mode="$1"
+shift
+
+plan_src=""
+if [ "$mode" = "plan" ]; then
+    [ $# -ge 1 ] || usage
+    plan_src="$1"
+    shift
+elif [ "$mode" != "diff" ]; then
+    usage
+fi
+
+base=""
+context=""
+model_args=()
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --base) base="${2:?--base needs a ref}"; shift 2 ;;
+        --context) context="${2:?--context needs text}"; shift 2 ;;
+        --model) model_args=(-m "${2:?--model needs a name}"); shift 2 ;;
+        *) usage ;;
+    esac
+done
+
+repo="$(git rev-parse --show-toplevel)"
+work="$(mktemp -d "${TMPDIR:-/tmp}/codex-review.XXXXXX")"
+schema="$work/schema.json"
+prompt="$work/prompt.md"
+out="$work/findings.json"
+log="$work/codex.log"
+
+# Structured outputs require every property to be listed in `required`, so
+# optional values are nullable instead of omitted.
+cat > "$schema" <<'JSON'
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["verdict", "findings"],
+  "properties": {
+    "verdict": {
+      "type": "string",
+      "description": "One or two sentences: is this ready to proceed, and what most needs attention."
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["severity", "likelihood", "file", "line", "summary", "failure_scenario", "evidence", "suggestion"],
+        "properties": {
+          "severity": { "type": "string", "enum": ["high", "medium", "low"] },
+          "likelihood": { "type": "string", "enum": ["likely", "plausible", "unlikely"] },
+          "file": { "type": ["string", "null"], "description": "Repo-relative path, or null for plan-level findings." },
+          "line": { "type": ["integer", "null"] },
+          "summary": { "type": "string", "description": "One sentence stating the defect." },
+          "failure_scenario": { "type": "string", "description": "Concrete inputs or state that lead to the wrong outcome." },
+          "evidence": { "type": "string", "description": "What in the repo you inspected that supports this, e.g. a file:line or command output." },
+          "suggestion": { "type": "string" }
+        }
+      }
+    }
+  }
+}
+JSON
+
+common_rules='## Rules
+
+- You are a reviewer only. Do not modify files. Report findings; another agent decides what to fix.
+- Read AGENTS.md at the repo root (and any it points to for the areas you touch). Its conventions are binding, and departures from them are findings.
+- Ground every finding in something you inspected in the repository. When a finding depends on how a library behaves, check the installed version under node_modules/ rather than relying on memory.
+- Rank by likelihood x impact. Report what is likely to happen or would be cheap to fix; leave out speculative edge cases, style nits that lint or the formatter would catch, and preferences that are not defects.
+- Fewer, well-grounded findings beat a long list. An empty findings array is a valid answer.'
+
+if [ "$mode" = "plan" ]; then
+    if [ "$plan_src" = "-" ]; then
+        plan_text="$(cat)"
+    else
+        plan_text="$(cat "$plan_src")"
+    fi
+    {
+        echo '# Task: review an implementation plan'
+        echo
+        echo 'Review the plan below before any code is written. Check it against the actual code: do the files, functions and call sites it names exist and behave as it assumes? Look for missed call sites or states, wrong assumptions about existing behavior, steps that would break other code, and simpler approaches the plan overlooks.'
+        echo
+        [ -n "$context" ] && { echo "Context from the author: $context"; echo; }
+        echo "$common_rules"
+        echo
+        echo '## Plan'
+        echo
+        echo "$plan_text"
+    } > "$prompt"
+else
+    if [ -z "$base" ]; then
+        base="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || echo master)"
+    fi
+    merge_base="$(git merge-base "$base" HEAD)"
+    {
+        echo '# Task: review a code change'
+        echo
+        echo "Review the changes on this branch since $base (merge base $merge_base): run \`git diff $merge_base\` to see committed and uncommitted changes together, and \`git status --short\` for untracked files, which are part of the change. Look for correctness bugs, missed call sites, broken behavior in code the diff did not touch, and departures from repo conventions."
+        echo
+        [ -n "$context" ] && { echo "What the change is meant to do: $context"; echo; }
+        echo "$common_rules"
+    } > "$prompt"
+fi
+
+if ! codex exec \
+    --cd "$repo" \
+    --sandbox read-only \
+    --ephemeral \
+    --output-schema "$schema" \
+    --output-last-message "$out" \
+    ${model_args[@]+"${model_args[@]}"} \
+    - < "$prompt" > "$log" 2>&1; then
+    echo "codex-review: codex exec failed; log at $log" >&2
+    exit 1
+fi
+
+cat "$out"
+echo
+rm -rf "$work"
