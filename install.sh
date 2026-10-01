@@ -65,6 +65,9 @@ link "$DOTFILES/claude/agents"    "$HOME/.claude/agents"
 link "$DOTFILES/claude/commands"  "$HOME/.claude/commands"
 claude_hook SessionStart "$DOTFILES/claude/hooks/trebellar-context.sh"
 
+# Scripts
+link "$DOTFILES/bin/codex-review"     "$HOME/.local/bin/codex-review"
+
 # Zsh
 link "$DOTFILES/zsh/zshrc"            "$HOME/.zshrc"
 link "$DOTFILES/zsh/zprofile"         "$HOME/.zprofile"
