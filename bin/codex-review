@@ -2,15 +2,21 @@
 # Read-only Codex review of a plan or a branch diff, printed as JSON findings
 # on stdout so it can be merged with other reviewers' output.
 #
-#   codex-review plan <file|->          [--context <text>] [--model <m>]
-#   codex-review diff [--base <ref>]    [--context <text>] [--model <m>]
+#   codex-review plan <file|->          [--context <text>] [--model <m>] [--effort <e>]
+#   codex-review diff [--base <ref>]    [--context <text>] [--model <m>] [--effort <e>]
 #
+# Defaults to the frontier model at high effort; max and ultra spend far more
+# reasoning tokens per review against the usage limit (ultra also adds
+# subagents). Left unset, Codex picks its workhorse model at its lowest effort.
 # Codex's own progress output goes to a log file, not the terminal; its path
 # is printed to stderr on failure.
 set -euo pipefail
 
+default_model="gpt-6-astra"
+default_effort="high"
+
 usage() {
-    sed -n '2,9p' "$0" | sed 's/^# \{0,1\}//' >&2
+    sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//' >&2
     exit 2
 }
 
@@ -29,12 +35,14 @@ fi
 
 base=""
 context=""
-model_args=()
+model="$default_model"
+effort="$default_effort"
 while [ $# -gt 0 ]; do
     case "$1" in
         --base) base="${2:?--base needs a ref}"; shift 2 ;;
         --context) context="${2:?--context needs text}"; shift 2 ;;
-        --model) model_args=(-m "${2:?--model needs a name}"); shift 2 ;;
+        --model) model="${2:?--model needs a name}"; shift 2 ;;
+        --effort) effort="${2:?--effort needs a level}"; shift 2 ;;
         *) usage ;;
     esac
 done
@@ -127,7 +135,8 @@ if ! codex exec \
     --ephemeral \
     --output-schema "$schema" \
     --output-last-message "$out" \
-    ${model_args[@]+"${model_args[@]}"} \
+    -m "$model" \
+    -c "model_reasoning_effort=\"$effort\"" \
     - < "$prompt" > "$log" 2>&1; then
     echo "codex-review: codex exec failed; log at $log" >&2
     exit 1
