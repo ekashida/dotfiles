@@ -1,10 +1,10 @@
 ---
-description: Walk through each concern from a prior /review, one at a time — classify, explain, discuss, fix, verify
+description: Walk through each concern from a prior /code-review, one at a time — classify, explain, discuss, fix, verify
 ---
 
-Triage the concerns from the most recent `/review` output in this conversation.
+Triage the concerns from the most recent `/code-review` output in this conversation.
 
-If there is no prior `/review` output in the conversation, say so and stop.
+If there is no prior `/code-review` output in the conversation, say so and stop.
 
 ## Step 0 — Classify all concerns up front
 
@@ -17,7 +17,7 @@ Before touching any concern in depth, read each one and tag it:
 
 Classification is not free-form guessing. For each concern, open the cited file, read the relevant lines, and skim enough surrounding context to be confident in the tag. If you cannot locate what the reviewer is pointing at, tag it `likely-wrong-reading` and note that.
 
-Report classifications as a compact list (one line each: tag + one-sentence justification), sorted: likely-wrong-reading first (cheapest to clear out), then real-bug, then design-question, then nit. Within a tag, keep the original `/review` order. This is also the processing order. Do not yet explain or fix anything. Then wait for my acknowledgement with options: **proceed** (tags accepted, start triage) / **re-tag** (I'll say which tags to change).
+Report classifications as a compact list (one line each: tag + one-sentence justification), sorted: likely-wrong-reading first (cheapest to clear out), then real-bug, then design-question, then nit. Within a tag, keep the original `/code-review` order. This is also the processing order. Do not yet explain or fix anything. Then wait for my acknowledgement with options: **proceed** (tags accepted, start triage) / **re-tag** (I'll say which tags to change).
 
 ## Per-concern flow
 
@@ -53,6 +53,6 @@ After the last concern is resolved, post a closing summary: one line per concern
 ## Rules
 
 - Whenever the flow waits for my decision, present the listed options as selectable choices via the AskUserQuestion tool — don't make me type them out. The option labels above are the canonical set for each step, but order them by your recommendation for the concern at hand: the option you'd pick goes first, marked "(Recommended)" when you have a clear lean. I can always answer free-form instead, and a free-form reply that doesn't match an option is a normal discussion turn, not an error.
-- Do not batch concerns across tags. Do not summarize all of them up front beyond the Step 0 classification list — we already have the `/review` output for that.
+- Do not batch concerns across tags. Do not summarize all of them up front beyond the Step 0 classification list — we already have the `/code-review` output for that.
 - Start with Step 0. After classification, process concerns in the sorted order from the classification list, skipping any already dismissed.
 - "Verify with a fresh subagent" means a new `Agent` invocation with no prior context, briefed via a self-contained prompt — not a continuation of an existing agent.
