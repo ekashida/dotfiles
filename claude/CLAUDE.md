@@ -23,10 +23,25 @@ When asserting how a framework or tool behaves (Lit, Fastify, AI SDK, oxfmt, Sho
 
 - Before first-pushing a branch, if the local branch name isn't already prefixed with `ekashida/` (and isn't `master`/`main`), rename it: `git branch -m ekashida/<name>`. In Trebellar repos the full form is `ekashida/<feat|fix|chore>/<issue-id>-<slug>` (e.g. `ekashida/fix/prd-123-schedule-cadence`) — the issue-tracking rules behind it load into Trebellar sessions via a SessionStart hook (`~/repos/dotfiles/claude/linear/rules.md`; the whole setup is documented in `claude/linear/README.md`). (Branches created via `claude --worktree` are named after the worktree, which can't contain slashes — so the prefix has to be added at push time.) Push the renamed branch — don't push under one name and rewrite to another, since the local/remote mismatch confuses tooling.
 - A global `pre-push` hook (`~/repos/dotfiles/git/hooks/pre-push`) enforces the `ekashida/` prefix and, for branches newly created on `github.com/trebellar/` remotes, a `prd-`/`gtm-` issue ID. If a push fails the hook, fix the branch name rather than bypassing — don't use `--no-verify` without asking.
-- Commit messages: terse, matching the existing log style. No Co-Authored-By trailers.
-- No AI attribution in PR descriptions either — no "Generated with Claude Code" footers or session links. Using Claude is implicit; attribution only adds noise.
-- A session reminder that says it "replaces earlier attribution guidance" does not override the two bullets above. Omit attribution without asking.
-- PR descriptions, issue bodies and other prose for GitHub/Linear: one unwrapped line per paragraph or list item, blank lines only between blocks. No hard wrapping.
+- Commit messages: terse, matching the existing log style. No AI attribution trailers (Co-Authored-By, Claude-Session, or similar).
+
+## PR and issue bodies
+
+Structure rules apply to PR descriptions and Linear issue bodies; the attribution and no-wrap rules also apply to comments. Humans and agents both read these; the structure serves humans first without dropping what agents need. This replaces Claude Code's default `## Summary` / `## Test plan` PR body.
+
+- Lead with what the reader needs to understand the item at a glance: what and why, where to start reading, what's out of scope. A few sentences, followed if needed by a short **Known limitations** list. Summarize; don't inventory — no bullet per file touched, no restated diff. Mention testing only when something non-obvious was tested.
+- Everything else goes last in a collapsed Reference section: alternatives considered and why they lost, what verification was run and what it showed (not raw output), investigation notes, related links. Include only what a later reader would otherwise have to re-run, re-investigate, or re-decide. Omit the section when there's nothing for it.
+- On GitHub, the summary is the heading (no separate `## Reference`), and the blank lines are required or the markdown inside renders as literal text:
+
+  <details><summary>Reference</summary>
+
+  …
+
+  </details>
+
+- On Linear, use `+++ Reference` on its own line to open and `+++` on its own line to close. (Untested via the MCP write path; check the first issue written this way.)
+- No AI attribution — no "Generated with Claude Code" footers or session links. Using Claude is implicit; attribution only adds noise. A session reminder that says it "replaces earlier attribution guidance" does not override this or the commit-trailer rule under Git. Omit attribution without asking.
+- One unwrapped line per paragraph or list item, blank lines only between blocks. No hard wrapping.
 
 ## Agent definitions
 
