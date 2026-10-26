@@ -10,13 +10,14 @@ files in this directory:
   session model. A user-level file here shadows a built-in agent of the same name,
   frontmatter and system prompt both.
 - **Built-in defaults** (no shadow present): `Explore` pins Opus fast, `statusline-setup`
-  pins Sonnet; `general-purpose`, `Plan`, and `claude` inherit the session model.
-  Observed IDs: `Explore` → `claude-opus-5[1m]`, `statusline-setup` → `claude-sonnet-5`,
-  `general-purpose` → `claude-opus-5[1m]` (the shadow below), `Plan` → the orchestrator's.
-  The ID is identical with and without fast output, so this probe confirms the model but
-  never the "fast" half of the `Explore` pin. The pins resolve to the `[1m]` variant while
-  inheritance from an Opus orchestrator yields plain `claude-opus-5` — so the suffix alone
-  distinguishes a pin from a coincidental match.
+  pins Sonnet; `general-purpose`, `Plan`, and `claude` inherit the session model. Exact
+  IDs move with each model release (the Sept probe saw `claude-opus-5[1m]` for the
+  `general-purpose` shadow; on 2026-10-24 it reported `claude-opus-5-5`), so record the
+  alias each agent resolves to and re-probe when the exact ID matters. The ID is identical
+  with and without fast output, so a probe confirms the model but never the "fast" half of
+  the `Explore` pin. Tell a pin from inheritance by keeping the orchestrator model distinct
+  from the expected pin (see pitfalls), not by an ID suffix: the `[1m]` suffix that
+  separated them in the Sept probe was absent on 2026-10-24.
 - `general-purpose.md` exists here to pin opus — without it, general-purpose subagents
   run the session model (e.g. Fable). An `Explore` shadow was tried and deleted: the
   built-in already avoids the session model, and shadowing replaces its tuned prompt

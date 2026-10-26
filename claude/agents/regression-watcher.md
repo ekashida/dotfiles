@@ -49,7 +49,7 @@ For each meaningful change in the diff:
 # What to skip
 
 - Pure formatting changes
-- Test-only changes (no test infra to break — yet)
+- Test-only changes, unless they touch shared test setup or helpers (vitest config, fixtures) that other tests import
 - Comment/doc-only changes
 - Changes confined to one file with no external imports or string references
 

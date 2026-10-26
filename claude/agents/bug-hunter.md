@@ -47,7 +47,7 @@ This is a Lit + Fastify + gRPC + Temporal + Vercel AI SDK v6 codebase using Redu
 - Tool-call result shape errors
 
 **General correctness**
-- Null vs undefined confusion (project convention: `null` = intentionally cleared, `undefined` = never set)
+- Null vs undefined confusion (convention: `null` marks an intentionally cleared value only at serialization boundaries; Lit component state clears to `undefined`)
 - Off-by-one / fencepost errors
 - Race conditions on shared state
 - Type assertions hiding real errors (`as any`, non-null `!` over a value that can legitimately be nullish)
